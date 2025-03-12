@@ -1,4 +1,12 @@
+import LoginForm from "../../components/AuthBlocks/LoginForm/LoginForm";
+import Banner from "../../components/AuthBlocks/Banner/Banner";
+
 const LoginPage = () => {
-  return <h1>Login Page</h1>;
+  return (
+    <main>
+      <LoginForm />
+      <Banner />
+    </main>
+  );
 };
 export default LoginPage;

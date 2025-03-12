@@ -1,0 +1,23 @@
+.bannerContainer {
+  width: 335px;
+  height: 351px;
+  background-color: var(--dark-gray2);
+  border-radius: 30px;
+  margin: 0 auto 20px auto;
+  padding: 20px 40px 0 40px;
+}
+
+.background {
+  background-image: url("../../../assets/banner/banner-mob@1x.jpg");
+  width: 255px;
+  height: 331px;
+  background-size: cover;
+  overflow: hidden;
+}
+@media (min-resolution: 192dpi),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .background {
+    background-image: url("../../../assets/banner/banner-mob@2x.jpg");
+  }
+}
