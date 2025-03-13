@@ -1,9 +1,17 @@
-.bannerContainer {
+.wrapperContainer {
   width: 335px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px;
+}
+
+.bannerContainer {
   height: 351px;
   background-color: var(--dark-gray2);
   border-radius: 30px;
-  margin: 0 auto 20px auto;
   padding: 20px 40px 0 40px;
 }
 

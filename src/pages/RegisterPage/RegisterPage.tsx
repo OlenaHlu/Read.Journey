@@ -1,4 +1,13 @@
+import Wrapper from "../../components/AuthBlocks/Wrapper/Wrapper";
+import RegistrationForm from "../../components/AuthBlocks/RegistrationForm/RegistrationForm";
+
 const RegisterPage = () => {
-  return <h1>Register Page</h1>;
+  return (
+    <main>
+      <Wrapper>
+        <RegistrationForm />
+      </Wrapper>
+    </main>
+  );
 };
 export default RegisterPage;

@@ -4,7 +4,7 @@ import css from "./Header.module.css";
 const Header = () => {
   return (
     <header>
-      <img src={logo} />
+      <img src={logo} className={css.logo} />
       <div></div>
     </header>
   );

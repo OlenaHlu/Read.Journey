@@ -1,11 +1,12 @@
 import LoginForm from "../../components/AuthBlocks/LoginForm/LoginForm";
-import Banner from "../../components/AuthBlocks/Banner/Banner";
+import Wrapper from "../../components/AuthBlocks/Wrapper/Wrapper";
 
 const LoginPage = () => {
   return (
     <main>
-      <LoginForm />
-      <Banner />
+      <Wrapper>
+        <LoginForm />
+      </Wrapper>
     </main>
   );
 };
