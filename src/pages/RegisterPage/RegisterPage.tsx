@@ -1,5 +1,5 @@
 import Wrapper from "../../components/AuthBlocks/Wrapper/Wrapper";
-import RegistrationForm from "../../components/AuthBlocks/RegistrationForm/RegistrationForm";
+import RegistrationForm from "../../components/AuthBlocks/RegistrationForm";
 
 const RegisterPage = () => {
   return (

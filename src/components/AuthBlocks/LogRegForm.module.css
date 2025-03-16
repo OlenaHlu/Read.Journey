@@ -1,0 +1,78 @@
+.logRegContainer {
+  width: 335px;
+  height: 411px;
+  background-color: var(--dark-gray2);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 40px 20px;
+}
+
+.logo {
+  width: 42px;
+  height: 17px;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: 0.035rem;
+}
+
+.span {
+  color: var(--light-gray);
+}
+
+.inputsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.input {
+  background-color: var(--dark-gray);
+  padding: 14px;
+  width: 295px;
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+}
+
+.submitBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+.logAdd {
+  margin-top: 72px;
+}
+
+.formBtn {
+  border-radius: 30px;
+  padding: 12px 29px;
+  width: 140px;
+  height: 42px;
+  background-color: var(--main-light);
+
+  color: var(--main-dark);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: 0.0175rem;
+  color: var(--dark-gray2);
+}
+
+.navigation {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.17;
+  letter-spacing: -0.01375rem;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--light-gray);
+}

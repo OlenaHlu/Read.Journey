@@ -1,8 +1,0 @@
-.registrationContainer {
-  width: 335px;
-  height: 411px;
-  background-color: var(--dark-gray2);
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-}

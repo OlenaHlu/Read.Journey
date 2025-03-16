@@ -1,4 +1,4 @@
-import LoginForm from "../../components/AuthBlocks/LoginForm/LoginForm";
+import LoginForm from "../../components/AuthBlocks/LoginForm";
 import Wrapper from "../../components/AuthBlocks/Wrapper/Wrapper";
 
 const LoginPage = () => {

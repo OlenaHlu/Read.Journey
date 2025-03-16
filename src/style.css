@@ -19,6 +19,8 @@
 }
 body {
   background-color: var(--main-dark);
+  font-family: var(--font-family);
+  color: var(--main-light);
 }
 
 * {
@@ -42,4 +44,12 @@ a {
 ul,
 ol {
   list-style: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
 }
