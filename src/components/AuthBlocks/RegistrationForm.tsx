@@ -1,7 +1,9 @@
 import css from "./LogRegForm.module.css";
 
 import logo from "../../assets/logo.svg";
+import Icon from "../common/Icon";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
@@ -14,6 +16,8 @@ type RegistrationFormValues = {
 };
 
 const RegistrationForm = () => {
+  const [isVisiblePwd, setIsVisiblePwd] = useState(false);
+
   const initialValues: RegistrationFormValues = {
     name: "",
     email: "",
@@ -32,6 +36,10 @@ const RegistrationForm = () => {
     console.log("form is valid:", data);
   };
 
+  const togglePwd = () => {
+    setIsVisiblePwd(!isVisiblePwd);
+  };
+
   return (
     <section className={css.logRegContainer}>
       <img src={logo} className={css.logo} />
@@ -40,30 +48,44 @@ const RegistrationForm = () => {
       </h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={css.inputsBlock}>
-          <input
-            className={css.input}
-            {...register("name")}
-            placeholder="Name:"
-          />
-          {errors.email && <p>{errors.email.message}</p>}
-          <input
-            className={css.input}
-            {...register("email")}
-            placeholder="Mail:"
-          />
-          {errors.email && <p>{errors.email.message}</p>}
-          <input
-            className={css.input}
-            {...register("password")}
-            placeholder="Password:"
-          />
-          {errors.password && <p>{errors.password.message}</p>}
+          <div>
+            <input
+              className={css.input}
+              {...register("name")}
+              placeholder="Name:"
+            />
+            {errors.email && <p>{errors.email.message}</p>}
+          </div>
+          <div>
+            <input
+              className={css.input}
+              {...register("email")}
+              placeholder="Mail:"
+            />
+            {errors.email && <p>{errors.email.message}</p>}
+          </div>
+          <div className={css.inputPwd}>
+            <input
+              className={css.input}
+              {...register("password")}
+              type={isVisiblePwd ? "text" : "password"}
+              placeholder="Password:"
+            />
+            <button type="button" onClick={togglePwd}>
+              {isVisiblePwd ? (
+                <Icon className={css.iconPwd} iconName="eye" />
+              ) : (
+                <Icon className={css.iconPwd} iconName="eye-off" />
+              )}
+            </button>
+            {errors.password && <p>{errors.password.message}</p>}
+          </div>
         </div>
         <div className={css.submitBlock}>
           <button className={css.formBtn} type="submit" disabled={isSubmitting}>
             {isSubmitting ? "loading..." : "Registration"}
           </button>
-          <Link className={css.navigation} to="/register">
+          <Link className={css.navigation} to="/login">
             Already have an account?
           </Link>
         </div>
