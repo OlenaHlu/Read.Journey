@@ -41,6 +41,14 @@
   color: var(--main-light);
 }
 
+input::placeholder {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.015rem;
+  color: var(--light-gray);
+}
+
 .submitBlock {
   display: flex;
   flex-direction: row;
