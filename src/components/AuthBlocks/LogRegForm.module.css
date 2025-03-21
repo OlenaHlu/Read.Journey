@@ -7,10 +7,20 @@
   padding: 20px 20px 40px 20px;
 }
 
+.logoContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  margin-bottom: 40px;
+}
+
 .logo {
   width: 42px;
   height: 17px;
-  margin-bottom: 40px;
+}
+
+.logoName {
+  display: none;
 }
 
 .title {
@@ -95,4 +105,44 @@ input::placeholder {
   position: absolute;
   top: 14px;
   right: 14px;
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .logRegContainer {
+    width: 704px;
+    padding-top: 40px;
+    padding-left: 64px;
+  }
+
+  .logoContainer {
+    margin-bottom: 157px;
+  }
+
+  .logoName {
+    display: flex;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0.02rem;
+    text-transform: uppercase;
+  }
+
+  .title {
+    width: 444px;
+    font-size: 58px;
+    line-height: 0.94;
+    letter-spacing: 0.075rem;
+  }
+
+  .inputsBlock {
+    gap: 14px;
+    margin: 40px 0;
+  }
+
+  .input {
+    padding: 16px 14px;
+    width: 472px;
+    height: 50px;
+  }
 }

@@ -42,7 +42,10 @@ const RegistrationForm = () => {
 
   return (
     <section className={css.logRegContainer}>
-      <img src={logo} className={css.logo} />
+      <div className={css.logoContainer}>
+        <img src={logo} className={css.logo} />
+        <p className={css.logoName}>read journey</p>
+      </div>
       <h2 className={css.title}>
         Expand your mind, reading <span className={css.span}>a book</span>
       </h2>

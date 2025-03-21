@@ -29,3 +29,14 @@
     background-image: url("../../../assets/banner/banner-mob@2x.jpg");
   }
 }
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .wrapperContainer {
+    width: 704px;
+  }
+
+  .bannerContainer {
+    display: none;
+  }
+}
