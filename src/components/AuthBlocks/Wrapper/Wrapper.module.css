@@ -40,3 +40,34 @@
     display: none;
   }
 }
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+  .wrapperContainer {
+    width: 1216px;
+    flex-direction: row;
+    gap: 16px;
+    margin: 32px auto;
+  }
+
+  .bannerContainer {
+    height: 736px;
+    display: flex;
+    /* width: 600px; */
+    padding: 80px 97px 0 98px;
+  }
+
+  .background {
+    background-image: url("../../../assets/banner/banner-desc@1x.jpg");
+    width: 405px;
+    height: 656px;
+  }
+
+  @media (min-resolution: 192dpi),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .background {
+      background-image: url("../../../assets/banner/banner-desc@2x.jpg");
+    }
+  }
+}

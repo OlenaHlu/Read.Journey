@@ -111,7 +111,6 @@ input::placeholder {
 @media screen and (min-width: 768px) {
   .logRegContainer {
     width: 704px;
-    padding-top: 40px;
     padding: 40px 168px 214px 64px;
   }
 
@@ -129,21 +128,35 @@ input::placeholder {
   }
 
   .title {
-    width: 444px;
-    font-size: 58px;
-    line-height: 0.94;
+    /* width: 450px; */
+    font-size: 60px;
+    line-height: 1;
     letter-spacing: 0.075rem;
   }
 
   .inputsBlock {
     gap: 14px;
-    margin: 40px 0;
+    margin: 40px 0 82px 0;
   }
 
   .input {
     padding: 16px 14px;
     width: 472px;
     height: 50px;
+  }
+
+  .submitBlock {
+    gap: 20px;
+  }
+
+  .formBtn {
+    padding: 16px 54px;
+    width: 225px;
+    height: 52px;
+
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: 0.025rem;
   }
 
   .logAdd {
@@ -154,5 +167,17 @@ input::placeholder {
     font-size: 14px;
     line-height: 1.29;
     letter-spacing: -0.0175rem;
+  }
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+  .logRegContainer {
+    width: 600px;
+    padding: 40px 64px;
+  }
+
+  .logoContainer {
+    margin-bottom: 107px;
   }
 }
