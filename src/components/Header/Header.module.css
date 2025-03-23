@@ -1,0 +1,70 @@
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px auto;
+  border-radius: 15px;
+  background-color: var(--dark-gray2);
+  width: 335px;
+  height: 57px;
+}
+.logoContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.logo {
+  width: 42px;
+  height: 17px;
+}
+
+.logoName {
+  display: none;
+}
+
+.userContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding-right: 20px;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .headerContainer {
+    width: 704px;
+    height: 74px;
+    margin: 32px auto;
+  }
+
+  .btn {
+    display: none;
+  }
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+  .headerContainer {
+    width: 1216px;
+    margin: 32px auto;
+  }
+
+  .logoName {
+    display: flex;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0.02rem;
+    text-transform: uppercase;
+  }
+}

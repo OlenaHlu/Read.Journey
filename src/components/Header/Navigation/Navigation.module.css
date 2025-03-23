@@ -1,0 +1,33 @@
+.navContainer {
+  display: none;
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .navContainer {
+    display: flex;
+  }
+
+  .navList {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+  }
+  .link {
+    padding-bottom: 8px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.12;
+    letter-spacing: -0.02rem;
+    color: var(--light-gray);
+  }
+
+  .active {
+    color: var(--main-light);
+    border-bottom: 3px solid var(--blue);
+  }
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+}

@@ -1,4 +1,6 @@
+import Header from "../../components/Header/Header";
+
 const ReadingPage = () => {
-  return <h1>Reading Page</h1>;
+  return <Header />;
 };
 export default ReadingPage;

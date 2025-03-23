@@ -1,4 +1,6 @@
+import Header from "../../components/Header/Header";
+
 const RecommendedPage = () => {
-  return <h1>Recommended Page</h1>;
+  return <Header />;
 };
 export default RecommendedPage;

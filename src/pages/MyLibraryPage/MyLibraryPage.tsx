@@ -1,4 +1,6 @@
+import Header from "../../components/Header/Header";
+
 const MyLibraryPage = () => {
-  return <h1>My Library Page</h1>;
+  return <Header />;
 };
 export default MyLibraryPage;
