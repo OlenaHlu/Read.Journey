@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 20px auto;
+  margin: 20px auto 10px auto;
   border-radius: 15px;
   background-color: var(--dark-gray2);
   width: 335px;
@@ -44,7 +44,7 @@
   .headerContainer {
     width: 704px;
     height: 74px;
-    margin: 32px auto;
+    margin: 32px auto 16px auto;
   }
 
   .btn {
@@ -56,7 +56,6 @@
 @media screen and (min-width: 1440px) {
   .headerContainer {
     width: 1216px;
-    margin: 32px auto;
   }
 
   .logoName {
