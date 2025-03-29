@@ -1,7 +1,6 @@
 .dashboardContainer {
   border-radius: 30px;
   width: 335px;
-  height: 478px;
   background-color: var(--dark-gray2);
   margin: 0 auto;
 }
@@ -10,7 +9,6 @@
 @media screen and (min-width: 768px) {
   .dashboardContainer {
     width: 704px;
-    height: 336px;
   }
 }
 
@@ -18,7 +16,6 @@
 @media screen and (min-width: 1440px) {
   .dashboardContainer {
     width: 353px;
-    height: 651px;
     margin: 0;
   }
 }

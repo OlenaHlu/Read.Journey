@@ -79,7 +79,7 @@ const RecommendedBoard = () => {
       <div className={css.quote}>
         <img src={booksIcon} alt="Book" className={css.booksImage} />
         <p className={css.quoteText}>
-          "Books are <span className={css.quoteSpan}>windows</span> to the
+          "Books are <span className={css.quoteSpan}> windows </span> to the
           world, and reading is a journey into the unknown."
         </p>
       </div>

@@ -1,5 +1,8 @@
 .boardRec {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .formTitle {
@@ -8,11 +11,11 @@
   line-height: 1.29;
   letter-spacing: -0.0125rem;
   color: var(--main-light);
-  margin-left: 14px;
+
+  margin: 0 0 8px 14px;
 }
 
 .filterForm {
-  margin: 8px 0 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -38,7 +41,7 @@
 }
 
 .inputNext {
-  padding: 14px 14px 14px 85px;
+  padding: 14px 14px 14px 87px;
 }
 
 .label {
@@ -73,7 +76,6 @@
 .describeContainer {
   border-radius: 12px;
   width: 295px;
-  /* height: 244px; */
   background-color: var(--dark-gray);
   padding: 20px;
 }
@@ -89,7 +91,7 @@
 .describeList {
   display: flex;
   flex-direction: column;
-  gap: 21px;
+  gap: 15.43px;
   margin: 20px 0;
 }
 
@@ -119,7 +121,7 @@
 
 .itemText {
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.0186rem;
   color: var(--main-light);
@@ -131,7 +133,7 @@
 
 .libraryLink {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.29;
   letter-spacing: -0.0175rem;
   text-decoration: underline;
@@ -147,12 +149,107 @@
 
 /*=================Tablet=================*/
 @media screen and (min-width: 768px) {
+  .boardRec {
+    padding: 32px;
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .formContainer {
+    width: 295px;
+  }
+
+  .describeContainer {
+    width: 313px;
+  }
+
+  .formTitle {
+    font-size: 14px;
+  }
+
+  .inputField {
+    height: 50px;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.0175rem;
+  }
+
+  .label {
+    top: 16px;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.0175rem;
+  }
+
+  .submitButton {
+    padding: 12px 28px;
+    width: 122px;
+    height: 42px;
+  }
+
+  .describeTitle {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: -0.025rem;
+  }
+
+  .describeList {
+    margin: 40px 0 26px 0;
+    gap: 20.91px;
+  }
 }
 
 /*=================Desktop=================*/
 @media screen and (min-width: 1440px) {
+  .boardRec {
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .formTitle {
+    margin-top: 16.859px;
+  }
+
+  .formContainer {
+    width: 313px;
+  }
+
+  .inputField {
+    width: 313px;
+  }
+  .describeList {
+    gap: 20px;
+  }
+
+  .quote {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+
+    align-items: center;
+    width: 313px;
+    height: 83px;
+    padding: 15px 20px 14px 20px;
+    border-radius: 12px;
+    background-color: var(--dark-gray);
+  }
+
   .booksImage {
     width: 40px;
     height: 40px;
+  }
+
+  .quoteText {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.02em;
+    color: var(--light-gray);
+  }
+
+  .quoteSpan {
+    color: var(--main-light);
   }
 }

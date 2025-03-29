@@ -3,7 +3,7 @@ import css from "./RecommendedPage.module.css";
 import Header from "../../components/Header/Header";
 import Dashboard from "../../components/Dashboard/Dashboard";
 import RecommendedBoard from "../../components/Dashboard/RecommendedBoard/RecommendedBoard";
-import RecommendedBooks from "../../components/RecommendedBooks/RecommendedBooks";
+import Recommended from "../../components/Recommended/Recommended";
 
 const RecommendedPage = () => {
   return (
@@ -13,7 +13,7 @@ const RecommendedPage = () => {
         <Dashboard>
           <RecommendedBoard />
         </Dashboard>
-        <RecommendedBooks />
+        <Recommended />
       </main>
     </>
   );
