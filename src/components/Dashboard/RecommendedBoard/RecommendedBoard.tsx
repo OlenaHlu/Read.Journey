@@ -47,10 +47,12 @@ const RecommendedBoard = () => {
         </form>
       </div>
       <div className={css.describeContainer}>
-        <h3 className={css.describeTitle}>Start your workout</h3>
+        <h2 className={css.describeTitle}>Start your workout</h2>
         <ul className={css.describeList}>
           <li className={css.listItem}>
-            <p className={css.itemNumber}>1</p>
+            <div className={css.itemNumber}>
+              <p className={css.number}>1</p>
+            </div>
             <p className={css.itemText}>
               Create a personal library:{" "}
               <span className={css.itemSpan}>
@@ -59,9 +61,11 @@ const RecommendedBoard = () => {
             </p>
           </li>
           <li className={css.listItem}>
-            <p className={css.itemNumber}>2</p>
+            <div className={css.itemNumber}>
+              <p className={css.number}>2</p>
+            </div>
             <p className={css.itemText}>
-              Create your first workout:
+              Create your first workout:{" "}
               <span className={css.itemSpan}>
                 define a goal, choose a period, start training.
               </span>

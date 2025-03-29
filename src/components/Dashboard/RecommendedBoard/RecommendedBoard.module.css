@@ -4,9 +4,9 @@
 
 .formTitle {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.29;
-  letter-spacing: -0.0175rem;
+  letter-spacing: -0.0125rem;
   color: var(--main-light);
   margin-left: 14px;
 }
@@ -53,6 +53,92 @@
   letter-spacing: -0.015rem;
   text-align: center;
   color: var(--light-gray);
+}
+
+.submitButton {
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+  padding: 10px 20px;
+  width: 98px;
+  height: 38px;
+  margin-top: 12px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: 0.0175rem;
+  color: var(--main-light);
+}
+
+.describeContainer {
+  border-radius: 12px;
+  width: 295px;
+  /* height: 244px; */
+  background-color: var(--dark-gray);
+  padding: 20px;
+}
+
+.describeTitle {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.02rem;
+  color: var(--main-light);
+}
+
+.describeList {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  margin: 20px 0;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+}
+
+.itemNumber {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--main-light);
+  padding: 11px 16px;
+}
+
+.number {
+  width: 8px;
+  height: 18px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.0225rem;
+  color: var(--dark-gray2);
+}
+
+.itemText {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.29;
+  letter-spacing: -0.0186rem;
+  color: var(--main-light);
+}
+
+.itemSpan {
+  color: var(--light-gray);
+}
+
+.libraryLink {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.0175rem;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--light-gray);
+
+  margin: 0;
 }
 
 .quote {
