@@ -1,9 +1,54 @@
 .recomContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
   border-radius: 30px;
   width: 335px;
   height: 382px;
   background-color: var(--dark-gray2);
   margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.topPart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.025rem;
+  color: var(--main-light);
+}
+
+.paginationBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconLeft {
+  width: 16px;
+  height: 16px;
+  rotate: 180deg;
+}
+
+.iconRight {
+  width: 16px;
+  height: 16px;
 }
 
 /*=================Tablet=================*/
@@ -11,6 +56,18 @@
   .recomContainer {
     width: 704px;
     height: 663px;
+    padding: 40px 40px;
+  }
+
+  .btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .iconLeft,
+  .iconRight {
+    width: 20px;
+    height: 20px;
   }
 }
 

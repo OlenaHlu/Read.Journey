@@ -40,5 +40,8 @@
 <symbol id="icon-burger" viewBox="0 0 48 32">
 <path fill="none" stroke="#f9f9f9" style="stroke: var(--color1, #f9f9f9)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="4" d="M3 16h42M3 2h42M17 30h28"></path>
 </symbol>
+<symbol id="icon-chevron" viewBox="0 0 32 32">
+<path fill="none" stroke="#f9f9f9" style="stroke: var(--color1, #f9f9f9)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M12 8l8 8-8 8"></path>
+</symbol>
 </defs>
 </svg>
