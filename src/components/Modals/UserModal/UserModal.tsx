@@ -2,6 +2,8 @@ import css from "./UserModal.module.css";
 
 import Icon from "../../common/Icon";
 import { NavLink } from "react-router-dom";
+import LogoutBtn from "../../AuthBlocks/LogoutBtn/LogoutBtn";
+
 import clsx from "clsx";
 
 type userModalProps = {
@@ -12,6 +14,7 @@ const UserModal = ({ closeModal }: userModalProps) => {
   function getClassActiveLink({ isActive }: { isActive: boolean }) {
     return clsx(css.link, isActive && css.active);
   }
+
   return (
     <div className={css.modal}>
       <div className={css.modalContainer}>
@@ -30,9 +33,7 @@ const UserModal = ({ closeModal }: userModalProps) => {
             </NavLink>
           </li>
         </ul>
-        <button className={css.logoutBtn} type="submit">
-          Log out
-        </button>
+        <LogoutBtn />
       </div>
     </div>
   );

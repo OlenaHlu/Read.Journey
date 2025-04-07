@@ -4,6 +4,7 @@ import logo from "../../assets/logo.svg";
 import Icon from "../common/Icon";
 
 import { useState } from "react";
+import { useAppDispatch } from "../../redux/hook";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
@@ -16,6 +17,7 @@ type LoginFormValues = {
 
 const LoginForm = () => {
   const [isVisiblePwd, setIsVisiblePwd] = useState(false);
+  const dispatch = useAppDispatch();
 
   const initialValues: LoginFormValues = {
     email: "",

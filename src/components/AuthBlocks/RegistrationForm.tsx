@@ -4,10 +4,14 @@ import logo from "../../assets/logo.svg";
 import Icon from "../common/Icon";
 
 import { useState } from "react";
+import { useAppSelector, useAppDispatch } from "../../redux/hook";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import { registerSchema } from "../../utils/validation";
+import { selectError, selectIsLoading } from "../../redux/auth/selectors";
+import { signUp } from "../../redux/auth/operations";
 
 type RegistrationFormValues = {
   name: string;
@@ -17,6 +21,12 @@ type RegistrationFormValues = {
 
 const RegistrationForm = () => {
   const [isVisiblePwd, setIsVisiblePwd] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const isLoading = useAppSelector(selectIsLoading);
+  const error = useAppSelector(selectError);
 
   const initialValues: RegistrationFormValues = {
     name: "",
@@ -34,6 +44,8 @@ const RegistrationForm = () => {
 
   const onSubmit = (data: RegistrationFormValues) => {
     console.log("form is valid:", data);
+    dispatch(signUp(data));
+    navigate("/recommended");
   };
 
   const togglePwd = () => {
@@ -86,7 +98,7 @@ const RegistrationForm = () => {
         </div>
         <div className={css.submitBlock}>
           <button className={css.formBtn} type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "loading..." : "Registration"}
+            {isSubmitting || isLoading ? "loading..." : "Registration"}
           </button>
           <Link className={css.navigation} to="/login">
             Already have an account?

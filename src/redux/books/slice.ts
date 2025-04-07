@@ -1,15 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchBooks } from "./operations";
-import { type BooksResponse } from "./types";
-
-type BooksState = {
-  books: BooksResponse | null;
-  isLoading: boolean;
-  error: string | null;
-};
+import { BooksState, BooksResponse } from "./types";
 
 const initialState: BooksState = {
-  books: null,
+  books: [],
+  currentPage: 1,
+  perPage: 2,
+  totalPages: 0,
   isLoading: false,
   error: null,
 };
@@ -27,7 +24,14 @@ const handleRejected = (state: BooksState, action: PayloadAction<any>) => {
 const booksSlice = createSlice({
   name: "books",
   initialState,
-  reducers: {},
+  reducers: {
+    resetPage(state) {
+      state.currentPage = 1;
+    },
+    incrementPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchBooks.pending, handlePending)
@@ -35,7 +39,7 @@ const booksSlice = createSlice({
         fetchBooks.fulfilled,
         (state, action: PayloadAction<BooksResponse>) => {
           state.isLoading = false;
-          state.books = action.payload;
+          state.books = action.payload.results;
           state.error = null;
         }
       )

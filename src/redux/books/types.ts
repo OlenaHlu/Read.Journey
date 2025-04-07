@@ -1,4 +1,9 @@
-export type Books = Book[];
+export type BooksResponse = {
+  results: Book[];
+  totalPages: number;
+  page: number;
+  perPage: number;
+};
 
 export type Book = {
   _id: string;
@@ -9,9 +14,11 @@ export type Book = {
   recommend: boolean;
 };
 
-export type BooksResponse = {
-  results: Books;
-  totalPages: number;
-  page: number;
+export type BooksState = {
+  books: Book[];
+  currentPage: number;
   perPage: number;
+  totalPages: number;
+  isLoading: boolean;
+  error: string | null;
 };

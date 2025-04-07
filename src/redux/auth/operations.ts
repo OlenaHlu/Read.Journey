@@ -73,7 +73,7 @@ export const refreshUser = createAsyncThunk<
   }
 });
 
-export const signOut = createAsyncThunk<void, { rejectValue: string }>(
+export const signOut = createAsyncThunk<void, void, { rejectValue: string }>(
   "/users/signOut",
   async (_, thunkAPI) => {
     try {

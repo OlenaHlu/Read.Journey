@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { type BooksResponse } from "./types";
 
+axios.defaults.baseURL = "https://readjourney.b.goit.study/api/";
+
 export const fetchBooks = createAsyncThunk<
   BooksResponse,
   void,
@@ -10,6 +12,7 @@ export const fetchBooks = createAsyncThunk<
 >("/books/fetchBooks", async (_, thunkAPI) => {
   try {
     const response = await axios.get("/books/recommend");
+    console.log("Response data from Firebase:", response.data);
     return response.data;
   } catch (error) {
     if (error instanceof Error) {
