@@ -1,17 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
+import axiosInstance from "../../api/axiosInstance";
 import { type BooksResponse } from "./types";
-
-axios.defaults.baseURL = "https://readjourney.b.goit.study/api/";
 
 export const fetchBooks = createAsyncThunk<
   BooksResponse,
-  void,
+  { page: number; limit: number },
   { rejectValue: string }
->("/books/fetchBooks", async (_, thunkAPI) => {
+>("/books/fetchBooks", async ({ page, limit }, thunkAPI) => {
   try {
-    const response = await axios.get("/books/recommend");
+    const response = await axiosInstance.get(
+      `/books/recommend?page=${page}&limit=${limit}`
+    );
     console.log("Response data from Firebase:", response.data);
     return response.data;
   } catch (error) {

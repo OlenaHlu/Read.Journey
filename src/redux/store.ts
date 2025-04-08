@@ -10,6 +10,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import localStorage from "redux-persist/lib/storage";
 import { authReducer } from "./auth/slice";
 import { booksReducer } from "./books/slice";
 
@@ -20,7 +21,7 @@ const rootReducer = combineReducers({
 
 const persistConfig = {
   key: "root",
-  storage,
+  storage: localStorage,
   whitelist: ["auth", "books"],
 };
 

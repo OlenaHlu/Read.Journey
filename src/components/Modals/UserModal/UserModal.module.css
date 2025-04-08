@@ -63,11 +63,14 @@
 
 .loginBtn,
 .registerBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid rgba(249, 249, 249, 0.2);
   border-radius: 30px;
   padding: 12px 28px;
 
-  font-weight: 500;
+  font-weight: 400;
   font-size: 16px;
   line-height: 1.12;
   letter-spacing: 0.02rem;

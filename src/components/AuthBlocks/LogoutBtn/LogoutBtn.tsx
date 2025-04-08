@@ -1,6 +1,6 @@
 import css from "./LogoutBtn.module.css";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../../redux/reduxHook";
 import { signOut } from "../../../redux/auth/operations";
 import { selectToken } from "../../../redux/auth/selectors";
 

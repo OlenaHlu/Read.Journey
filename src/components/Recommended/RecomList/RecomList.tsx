@@ -8,9 +8,6 @@ type BooksListProps = {
 };
 
 const RecomList = ({ books }: BooksListProps) => {
-  if (!books || books.length === 0) {
-    return <div>No books available</div>; // Показуємо повідомлення, якщо books ще не визначено або порожнє
-  }
   return (
     <ul>
       {books.map((book) => (

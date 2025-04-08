@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchBooks } from "./operations";
-import { BooksState, BooksResponse } from "./types";
+import { BooksState, BooksResponse, Book } from "./types";
 
 const initialState: BooksState = {
   books: [],
   currentPage: 1,
-  perPage: 2,
+  perPage: 5,
   totalPages: 0,
   isLoading: false,
   error: null,
@@ -31,6 +31,12 @@ const booksSlice = createSlice({
     incrementPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
+    decrementPage(state) {
+      state.currentPage = Math.max(1, state.currentPage - 1);
+    },
+    setPerPage(state, action) {
+      state.perPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -40,6 +46,7 @@ const booksSlice = createSlice({
         (state, action: PayloadAction<BooksResponse>) => {
           state.isLoading = false;
           state.books = action.payload.results;
+          state.totalPages = action.payload.totalPages;
           state.error = null;
         }
       )
@@ -47,4 +54,6 @@ const booksSlice = createSlice({
   },
 });
 
+export const { resetPage, incrementPage, decrementPage, setPerPage } =
+  booksSlice.actions;
 export const booksReducer = booksSlice.reducer;

@@ -4,7 +4,7 @@ import Icon from "../../common/Icon";
 import { NavLink } from "react-router-dom";
 import LogoutBtn from "../../AuthBlocks/LogoutBtn/LogoutBtn";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../redux/hook";
+import { useAppSelector } from "../../../redux/reduxHook";
 import { selectToken } from "../../../redux/auth/selectors";
 
 import clsx from "clsx";

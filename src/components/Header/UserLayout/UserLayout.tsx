@@ -1,7 +1,7 @@
 import css from "./UserLayout.module.css";
 
 import LogoutBtn from "../../AuthBlocks/LogoutBtn/LogoutBtn";
-import { useAppSelector } from "../../../redux/hook";
+import { useAppSelector } from "../../../redux/reduxHook";
 import { selectToken, selectUser } from "../../../redux/auth/selectors";
 import { useNavigate } from "react-router-dom";
 

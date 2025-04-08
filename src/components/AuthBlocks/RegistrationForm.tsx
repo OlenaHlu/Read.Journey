@@ -4,7 +4,7 @@ import logo from "../../assets/logo.svg";
 import Icon from "../common/Icon";
 
 import { useState } from "react";
-import { useAppSelector, useAppDispatch } from "../../redux/hook";
+import { useAppSelector, useAppDispatch } from "../../redux/reduxHook";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";

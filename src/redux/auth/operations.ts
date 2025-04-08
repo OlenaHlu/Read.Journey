@@ -1,14 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import axiosInstance from "../../api/axiosInstance";
-
-const setAuthHeader = (token: string) => {
-  axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-const clearAuthHeader = () => {
-  axiosInstance.defaults.headers.common.Authorization = "";
-};
 
 export type User = {
   name: string;
@@ -28,7 +19,7 @@ export const signUp = createAsyncThunk<
       email,
       password,
     });
-    setAuthHeader(response.data.token);
+    localStorage.setItem("token", response.data.token);
     return response.data;
   } catch (error) {
     if (error instanceof Error) {
@@ -48,7 +39,7 @@ export const signIn = createAsyncThunk<
       email,
       password,
     });
-    setAuthHeader(response.data.token);
+    localStorage.setItem("token", response.data.token);
     return response.data;
   } catch (error) {
     if (error instanceof Error) {
@@ -65,7 +56,7 @@ export const refreshUser = createAsyncThunk<
 >("/users/current/refreshUser", async (_, thunkAPI) => {
   try {
     const response = await axiosInstance.get("/users/current/refresh");
-    setAuthHeader(response.data.token);
+    localStorage.setItem("token", response.data.token);
     return response.data;
   } catch (error) {
     if (error instanceof Error) {
@@ -80,7 +71,7 @@ export const signOut = createAsyncThunk<void, void, { rejectValue: string }>(
   async (_, thunkAPI) => {
     try {
       await axiosInstance.post("/users/signout");
-      clearAuthHeader();
+      localStorage.removeItem("token");
     } catch (error) {
       if (error instanceof Error) {
         return thunkAPI.rejectWithValue(error.message);
