@@ -15,14 +15,15 @@
 
 .modalContainer {
   padding: 40px;
+  height: 812px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .closeBtn {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 218px;
 }
 
 .icon {
@@ -37,7 +38,7 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin: 0 auto 394px auto;
+  margin: 0 auto;
 }
 
 .link {
@@ -52,4 +53,23 @@
 .active {
   color: var(--main-light);
   border-bottom: 2px solid var(--blue);
+}
+
+.logRegContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.loginBtn,
+.registerBtn {
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+  padding: 12px 28px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.12;
+  letter-spacing: 0.02rem;
+  color: var(--main-light);
 }

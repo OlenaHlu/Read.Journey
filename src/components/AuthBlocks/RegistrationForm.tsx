@@ -55,7 +55,9 @@ const RegistrationForm = () => {
   return (
     <section className={css.logRegContainer}>
       <div className={css.logoContainer}>
-        <img src={logo} className={css.logo} />
+        <Link to="/">
+          <img src={logo} className={css.logo} />
+        </Link>
         <p className={css.logoName}>read journey</p>
       </div>
       <h2 className={css.title}>

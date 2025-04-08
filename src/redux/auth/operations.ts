@@ -1,14 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
-axios.defaults.baseURL = "https://readjourney.b.goit.study/api/";
+import axiosInstance from "../../api/axiosInstance";
 
 const setAuthHeader = (token: string) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = "";
+  axiosInstance.defaults.headers.common.Authorization = "";
 };
 
 export type User = {
@@ -24,7 +23,7 @@ export const signUp = createAsyncThunk<
   { rejectValue: string }
 >("/users/signUp", async ({ name, email, password }, thunkAPI) => {
   try {
-    const response = await axios.post("/users/signup", {
+    const response = await axiosInstance.post("/users/signup", {
       name,
       email,
       password,
@@ -45,7 +44,10 @@ export const signIn = createAsyncThunk<
   { rejectValue: string }
 >("/users/signIn", async ({ email, password }, thunkAPI) => {
   try {
-    const response = await axios.post("/users/signin", { email, password });
+    const response = await axiosInstance.post("/users/signin", {
+      email,
+      password,
+    });
     setAuthHeader(response.data.token);
     return response.data;
   } catch (error) {
@@ -62,7 +64,7 @@ export const refreshUser = createAsyncThunk<
   { rejectValue: string }
 >("/users/current/refreshUser", async (_, thunkAPI) => {
   try {
-    const response = await axios.get("/users/current/refresh");
+    const response = await axiosInstance.get("/users/current/refresh");
     setAuthHeader(response.data.token);
     return response.data;
   } catch (error) {
@@ -77,7 +79,7 @@ export const signOut = createAsyncThunk<void, void, { rejectValue: string }>(
   "/users/signOut",
   async (_, thunkAPI) => {
     try {
-      await axios.post("/users/logout");
+      await axiosInstance.post("/users/signout");
       clearAuthHeader();
     } catch (error) {
       if (error instanceof Error) {

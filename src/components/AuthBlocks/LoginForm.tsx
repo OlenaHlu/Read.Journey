@@ -4,11 +4,13 @@ import logo from "../../assets/logo.svg";
 import Icon from "../common/Icon";
 
 import { useState } from "react";
-import { useAppDispatch } from "../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import { loginSchema } from "../../utils/validation";
+import { signIn } from "../../redux/auth/operations";
 
 type LoginFormValues = {
   email: string;
@@ -18,6 +20,7 @@ type LoginFormValues = {
 const LoginForm = () => {
   const [isVisiblePwd, setIsVisiblePwd] = useState(false);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const initialValues: LoginFormValues = {
     email: "",
@@ -32,6 +35,8 @@ const LoginForm = () => {
 
   const onSubmit = (data: LoginFormValues) => {
     console.log("form is valid:", data);
+    dispatch(signIn(data));
+    navigate("/recommended");
   };
 
   const togglePwd = () => {
@@ -41,7 +46,9 @@ const LoginForm = () => {
   return (
     <section className={css.logRegContainer}>
       <div className={css.logoContainer}>
-        <img src={logo} className={css.logo} />
+        <Link to="/">
+          <img src={logo} className={css.logo} />
+        </Link>
         <p className={css.logoName}>read journey</p>
       </div>
       <h2 className={css.title}>

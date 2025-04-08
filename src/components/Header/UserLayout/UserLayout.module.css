@@ -29,12 +29,19 @@
   display: none;
 }
 
-.logoutBtn {
+.loginBtn,
+.registerBtn {
   display: none;
 }
 
 /*=================Tablet=================*/
 @media screen and (min-width: 768px) {
+  .userBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+
   .nameInitial {
     width: 40px;
     height: 40px;
@@ -47,6 +54,37 @@
     padding: 12px 28px;
     width: 114px;
     height: 42px;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.12;
+    letter-spacing: 0.02rem;
+    color: var(--main-light);
+  }
+  .authBtn {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+  }
+  .loginBtn {
+    display: flex;
+    border: 1px solid rgba(249, 249, 249, 0.2);
+    border-radius: 30px;
+    padding: 12px 28px;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.12;
+    letter-spacing: 0.02rem;
+    color: var(--main-light);
+  }
+
+  .registerBtn {
+    display: flex;
+    background-color: rgba(249, 249, 249, 0.2);
+    border: 1px solid rgba(249, 249, 249, 0.2);
+    border-radius: 30px;
+    padding: 12px 28px;
 
     font-weight: 500;
     font-size: 16px;
