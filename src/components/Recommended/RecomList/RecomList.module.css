@@ -1,0 +1,20 @@
+.booksList {
+  display: flex;
+  flex-direction: row;
+  gap: 21px;
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .booksList {
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+  .booksList {
+    gap: 20px;
+  }
+}

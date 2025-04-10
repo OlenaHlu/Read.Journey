@@ -8,12 +8,14 @@ type RecomCardProps = {
 
 const RecomCard = ({ book }: RecomCardProps) => {
   return (
-    <div>
+    <div className={css.cardContainer}>
       <div>
-        <img src={book.imageUrl} alt={book.title} />
+        <img src={book.imageUrl} alt={book.title} className={css.imgBook} />
       </div>
-      <h4>{book.title}</h4>
-      <p>{book.author}</p>
+      <div className={css.descrContainer}>
+        <p className={css.bookTitle}>{book.title}</p>
+        <p className={css.bookAuthor}>{book.author}</p>
+      </div>
     </div>
   );
 };

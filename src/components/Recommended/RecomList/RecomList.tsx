@@ -9,7 +9,7 @@ type BooksListProps = {
 
 const RecomList = ({ books }: BooksListProps) => {
   return (
-    <ul>
+    <ul className={css.booksList}>
       {books.map((book) => (
         <li key={book._id}>
           <RecomCard book={book} />
