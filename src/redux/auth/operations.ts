@@ -55,6 +55,11 @@ export const refreshUser = createAsyncThunk<
   { rejectValue: string }
 >("/users/current/refreshUser", async (_, thunkAPI) => {
   try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return thunkAPI.rejectWithValue("No token available");
+    }
+
     const response = await axiosInstance.get("/users/current/refresh");
     localStorage.setItem("token", response.data.token);
     return response.data;
@@ -73,6 +78,7 @@ export const signOut = createAsyncThunk<void, void, { rejectValue: string }>(
       await axiosInstance.post("/users/signout");
       localStorage.removeItem("token");
     } catch (error) {
+      console.error("Error logging out", error);
       if (error instanceof Error) {
         return thunkAPI.rejectWithValue(error.message);
       }
