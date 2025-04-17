@@ -1,14 +1,8 @@
 import css from "./MyLibraryBoard.module.css";
 
-import RecomList from "../../../components/Recommended/RecomList/RecomList";
-import { useAppSelector } from "../../../redux/reduxHook";
-import { selectBooks } from "../../../redux/books/selectors";
 import { Link } from "react-router-dom";
-import Icon from "../../../components/common/Icon";
 
 const MyLibraryBoard = () => {
-  const { books } = useAppSelector(selectBooks);
-
   const handleSubmit = () => {};
   return (
     <div className={css.libraryContainer}>
@@ -49,15 +43,23 @@ const MyLibraryBoard = () => {
       <div className={css.recomPart}>
         <h2 className={css.recomPartTitle}>Recommended books</h2>
         <div className={css.booksContainer}>
-          <RecomList books={books} />
+          <ul>
+            <li>
+              <div className={css.book1}></div>
+              <p>The Orphanage</p>
+            </li>
+            <li>
+              <div className={css.book2}></div>
+            </li>
+            <li>
+              <div className={css.book3}></div>
+            </li>
+          </ul>
         </div>
         <div>
-          <Link to="/" className={css.link}>
+          <Link to="/recommended" className={css.link}>
             Home
           </Link>
-          <button type="button" className={css.btnErrow}>
-            <Icon iconName="login" className={css.icon} />
-          </button>
         </div>
       </div>
     </div>

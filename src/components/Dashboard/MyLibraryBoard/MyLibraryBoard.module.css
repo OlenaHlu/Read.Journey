@@ -1,0 +1,37 @@
+.book1,
+.book2,
+.book3 {
+  border-radius: 8px;
+  width: 71px;
+  height: 107px;
+  background-size: contain;
+  overflow: hidden;
+}
+
+.book1 {
+  background-image: url("../../../assets/libBooks/book1@1x.png");
+}
+
+.book2 {
+  background-image: url("../../../assets/libBooks/book2@1x.png");
+}
+
+.book3 {
+  background-image: url("../../../assets/libBooks/book3@1x.png");
+}
+
+@media (min-resolution: 192dpi),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .book1 {
+    background-image: url("../../../assets/libBooks/book1@2x.png");
+  }
+
+  .book2 {
+    background-image: url("../../../assets/libBooks/book2@2x.png");
+  }
+
+  .book3 {
+    background-image: url("../../../assets/libBooks/book3@2x.png");
+  }
+}
