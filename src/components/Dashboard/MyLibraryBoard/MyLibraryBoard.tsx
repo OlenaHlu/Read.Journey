@@ -1,6 +1,7 @@
 import css from "./MyLibraryBoard.module.css";
 
 import { Link } from "react-router-dom";
+import Icon from "../../../components/common/Icon";
 
 const MyLibraryBoard = () => {
   const handleSubmit = () => {};
@@ -61,6 +62,9 @@ const MyLibraryBoard = () => {
             Home
           </Link>
         </div>
+        <Link to="/login" className={css.link}>
+          <Icon iconName="login" className={css.icon} />
+        </Link>
       </div>
     </div>
   );
