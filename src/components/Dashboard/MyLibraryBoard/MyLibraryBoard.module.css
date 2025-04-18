@@ -1,3 +1,104 @@
+.libraryContainer {
+  padding: 18px 20px 20px 20px;
+}
+
+.libraryForm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.formTitle {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.29;
+  letter-spacing: -0.0125rem;
+  color: var(--main-light);
+
+  margin: 0 0 8px 14px;
+}
+
+.filterForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.inputField {
+  border-radius: 12px;
+  padding: 14px 14px 14px 77px;
+  width: 295px;
+  height: 44px;
+  background: var(--dark-gray);
+  border: none;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.015rem;
+  color: var(--main-light);
+}
+
+.label {
+  position: absolute;
+  pointer-events: none;
+  top: 14px;
+  left: 14px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.015rem;
+  text-align: center;
+  color: var(--light-gray);
+}
+
+.submitButton {
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+  padding: 10px 20px;
+  width: 98px;
+  height: 38px;
+  margin-top: 12px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.29;
+  letter-spacing: 0.0175rem;
+  color: var(--main-light);
+}
+
+.recomPart {
+  border-radius: 12px;
+  width: 295px;
+  height: 244px;
+  background-color: var(--dark-gray);
+  padding: 20px;
+}
+
+.recomPartTitle {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  color: var(--main-light);
+  margin-bottom: 20px;
+}
+
+.booksList {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.booksItem {
+  width: 71px;
+}
+
 .book1,
 .book2,
 .book3 {
@@ -6,6 +107,7 @@
   height: 107px;
   background-size: contain;
   overflow: hidden;
+  margin-bottom: 8px;
 }
 
 .book1 {
@@ -33,5 +135,103 @@
 
   .book3 {
     background-image: url("../../../assets/libBooks/book3@2x.png");
+  }
+}
+
+.bookName {
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 1.2;
+  letter-spacing: -0.01rem;
+  color: var(--main-light);
+  margin-bottom: 2px;
+}
+
+.bookAuthor {
+  font-weight: 600;
+  font-size: 8px;
+  line-height: 1.2;
+  letter-spacing: -0.01rem;
+  color: var(--light-gray);
+}
+
+.navigate {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 17px;
+}
+
+.recomLink {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #686868;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .libraryContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 32px;
+  }
+
+  .formTitle {
+    font-size: 14px;
+  }
+
+  .inputField {
+    height: 50px;
+  }
+
+  .submitButton {
+    margin-top: 18px;
+    padding: 12px 28px;
+    width: 122px;
+    height: 42px;
+
+    font-size: 14px;
+  }
+
+  .recomPart {
+    width: 313px;
+  }
+
+  .booksList {
+    justify-content: space-between;
+  }
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+  .libraryContainer {
+    height: 651px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  .libraryForm {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .inputField {
+    width: 313px;
+  }
+
+  .recomPart {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
