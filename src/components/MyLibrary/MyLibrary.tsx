@@ -7,7 +7,7 @@ const MyLibrary = () => {
     <div className={css.libraryContainer}>
       <div>
         <h2 className={css.titleLib}>My library</h2>
-        <LibraryFilter />
+        {/* <LibraryFilter /> */}
       </div>
       <div></div>
       <div></div>
