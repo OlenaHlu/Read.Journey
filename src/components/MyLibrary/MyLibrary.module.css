@@ -1,0 +1,8 @@
+.libraryContainer {
+  border-radius: 30px;
+  width: 335px;
+  height: 407px;
+  background-color: var(--dark-gray2);
+  margin: 0 auto;
+  padding: 40px 20px;
+}
