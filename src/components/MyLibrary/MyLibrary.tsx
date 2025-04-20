@@ -5,7 +5,7 @@ import LibraryFilter from "./LibraryFilter/LibraryFilter";
 const MyLibrary = () => {
   return (
     <div className={css.libraryContainer}>
-      <div>{/* <LibraryFilter /> */}</div>
+      <LibraryFilter />
       <div></div>
       <div></div>
     </div>

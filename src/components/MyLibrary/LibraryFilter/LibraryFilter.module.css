@@ -20,6 +20,9 @@
   width: 120px;
   height: 40px;
 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;

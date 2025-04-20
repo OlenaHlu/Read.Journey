@@ -10,6 +10,7 @@ export type BooksState = {
   currentPage: number;
   perPage: number;
   totalPages: number;
+  filters: string;
   isLoading: boolean;
   error: string | null;
 };

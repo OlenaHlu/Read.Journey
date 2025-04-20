@@ -8,6 +8,8 @@ export const selectTotalPages = (state: RootState) => state.books.totalPages;
 
 export const selectPerPage = (state: RootState) => state.books.perPage;
 
+export const selectFilters = (state: RootState) => state.books.filters;
+
 export const selectIsLoading = (state: RootState) => state.books.isLoading;
 
 export const selectError = (state: RootState) => state.books.error;

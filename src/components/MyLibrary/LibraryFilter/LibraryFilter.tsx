@@ -1,32 +1,38 @@
 import css from "./LibraryFilter.module.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../redux/reduxHook";
+import { selectFilters } from "../../../redux/books/selectors";
+import { setFilters, resetFilters } from "../../../redux/books/slice";
 import Icon from "../../common/Icon";
 
-type LibraryFilterProps = {
-  selectedFilters: string;
-  onFilterChange: (filter: string) => void;
-};
+// type LibraryFilterProps = {
+//   selectedFilters: string;
+//   onFilterChange: (filter: string) => void;
+// };
 
-const LibraryFilter = ({
-  selectedFilters,
-  onFilterChange,
-}: LibraryFilterProps) => {
+const LibraryFilter = () => {
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const useFilters = useAppSelector(selectFilters);
 
   const filters = ["Unread", "In progress", "Done", "All books"];
 
   const togggleDropDown = () => setIsOpen((prev) => !prev);
 
+  useEffect(() => {
+    dispatch(resetFilters());
+  }, [dispatch]);
+
   const handleFiltersClick = (filter: string) => {
-    onFilterChange(filter);
+    dispatch(setFilters(filter));
     setIsOpen(false);
   };
   return (
     <div className={css.filterContainer}>
       <h2 className={css.filterTitle}>My library</h2>
       <button className={css.filterBtn} onClick={togggleDropDown}>
-        {selectedFilters}
+        {useFilters}
         <span>
           {isOpen ? (
             <Icon iconName="chevron-down" className={css.iconUp} />
@@ -41,7 +47,7 @@ const LibraryFilter = ({
             <li
               key={filter}
               className={`${css.filterItem} ${
-                selectedFilters === filter ? css.active : ""
+                useFilters === filter ? css.active : ""
               }`}
               onClick={() => {
                 handleFiltersClick(filter);
