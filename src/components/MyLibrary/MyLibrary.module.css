@@ -3,6 +3,25 @@
   width: 335px;
   height: 407px;
   background-color: var(--dark-gray2);
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
   padding: 40px 20px;
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .libraryContainer {
+    width: 704px;
+    height: 518px;
+    margin: 0 auto 32px auto;
+    padding: 40px;
+  }
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+  .libraryContainer {
+    width: 847px;
+    height: 651px;
+    margin-bottom: 0;
+  }
 }

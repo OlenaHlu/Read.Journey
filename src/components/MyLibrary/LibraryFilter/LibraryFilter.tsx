@@ -23,8 +23,35 @@ const LibraryFilter = ({
     setIsOpen(false);
   };
   return (
-    <div>
-      <button>{selectedFilters}</button>
+    <div className={css.filterContainer}>
+      <h2 className={css.filterTitle}>My library</h2>
+      <button className={css.filterBtn} onClick={togggleDropDown}>
+        {selectedFilters}
+        <span>
+          {isOpen ? (
+            <Icon iconName="chevron-down" className={css.iconUp} />
+          ) : (
+            <Icon iconName="chevron-down" className={css.iconDown} />
+          )}
+        </span>
+      </button>
+      {isOpen && (
+        <ul className={css.filterList}>
+          {filters.map((filter) => (
+            <li
+              key={filter}
+              className={`${css.filterItem} ${
+                selectedFilters === filter ? css.active : ""
+              }`}
+              onClick={() => {
+                handleFiltersClick(filter);
+              }}
+            >
+              {filter}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

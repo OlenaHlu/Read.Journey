@@ -225,13 +225,19 @@
   .libraryForm {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 0;
   }
   .inputField {
     width: 313px;
   }
 
+  .submitButton {
+    margin-top: 12px;
+  }
+
   .recomPart {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 0;
   }
 }

@@ -1,0 +1,106 @@
+.filterContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.filterTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.025rem;
+}
+
+.filterBtn {
+  position: relative;
+  border: 1px solid #3e3e3e;
+  border-radius: 12px;
+  padding: 12px 14px;
+  width: 120px;
+  height: 40px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.015rem;
+  text-align: center;
+  color: var(--main-light);
+}
+
+.iconUp,
+.iconDown {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 12px;
+  right: 12px;
+  fill: var(--bg-white);
+  transition: transform 0.3s ease;
+}
+.iconUp {
+  transform: rotate(0.5turn);
+}
+
+.filterList {
+  position: absolute;
+  right: 0;
+  top: 44px;
+  width: 120px;
+  height: 113px;
+  border-radius: 12px;
+  background-color: var(--dark-gray);
+  z-index: 10;
+  list-style: none;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.filterItem {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.015rem;
+  color: var(--light-gray);
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .filterTitle {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.14;
+    letter-spacing: 0.035em;
+  }
+  .filterBtn {
+    padding: 14px;
+    width: 153px;
+    height: 46px;
+  }
+
+  .iconUp,
+  .iconDown {
+    top: 14px;
+    right: 14px;
+  }
+
+  .filterList {
+    right: 0;
+    top: 54px;
+    width: 153px;
+    height: 121px;
+  }
+
+  .filterItem {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.0175em;
+  }
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+}
