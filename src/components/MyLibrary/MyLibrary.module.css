@@ -7,6 +7,40 @@
   padding: 40px 20px;
 }
 
+.informBlock {
+  width: 197px;
+  height: 164px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 63px auto auto auto;
+  gap: 10px;
+}
+
+.imgContainer {
+  background-color: var(--dark-gray);
+  border-radius: 100%;
+  padding: 25px;
+}
+
+.booksImage {
+  width: 50px;
+  height: 50px;
+}
+
+.libText {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.0175rem;
+  text-align: center;
+}
+
+.textSpan {
+  color: var(--light-gray);
+}
+
 /*=================Tablet=================*/
 @media screen and (min-width: 768px) {
   .libraryContainer {
@@ -14,6 +48,22 @@
     height: 518px;
     margin: 0 auto 32px auto;
     padding: 40px;
+  }
+
+  .informBlock {
+    width: 274px;
+    height: 186px;
+    margin: 86px auto auto auto;
+    gap: 20px;
+  }
+
+  .imgContainer {
+    padding: 30px;
+  }
+
+  .booksImage {
+    width: 70px;
+    height: 70px;
   }
 }
 
@@ -23,5 +73,9 @@
     width: 847px;
     height: 651px;
     margin-bottom: 0;
+  }
+
+  .informBlock {
+    margin: 147px auto auto auto;
   }
 }

@@ -2,7 +2,7 @@ import css from "./RecommendedBoard.module.css";
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import booksIcon from "../../../assets/books.png";
+import booksIcon from "../../../assets/book.png";
 
 const RecommendedBoard = () => {
   const [bookTitle, setBookTitle] = useState("");
@@ -77,7 +77,7 @@ const RecommendedBoard = () => {
         </Link>
       </div>
       <div className={css.quote}>
-        <img src={booksIcon} alt="Book" className={css.booksImage} />
+        <img src={booksIcon} alt="Books" className={css.booksImage} />
         <p className={css.quoteText}>
           "Books are <span className={css.quoteSpan}> windows </span> to the
           world, and reading is a journey into the unknown."

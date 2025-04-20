@@ -5,7 +5,7 @@ import { BooksState, BooksResponse, Book } from "./types";
 const initialState: BooksState = {
   books: [],
   currentPage: 1,
-  perPage: 5,
+  perPage: 10,
   totalPages: 0,
   filters: "All books",
   isLoading: false,

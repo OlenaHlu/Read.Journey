@@ -15,6 +15,7 @@ import {
   incrementPage,
   decrementPage,
   setPerPage,
+  resetPage,
 } from "../../redux/books/slice";
 import useWindowSize from "../../components/hooks/useWindowSize";
 
@@ -28,6 +29,11 @@ const Recommended = () => {
   const windowSize = useWindowSize();
 
   useEffect(() => {
+    dispatch(resetPage());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(resetPage());
     if (windowSize.width <= 375) {
       dispatch(setPerPage(2));
     } else if (windowSize.width <= 768) {

@@ -101,6 +101,14 @@
     font-size: 14px;
     line-height: 1.29;
     letter-spacing: -0.0175em;
+
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .filterItem:hover,
+  .filterItem:active {
+    color: var(--main-light);
   }
 }
 
