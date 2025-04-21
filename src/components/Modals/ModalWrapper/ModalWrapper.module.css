@@ -1,0 +1,37 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(20, 20, 20, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+.modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modalContent {
+  border: 1px solid rgba(104, 104, 104, 0.2);
+  width: 335px;
+  height: 421px;
+  background-color: var(--dark-gray2);
+  padding: 16px;
+  border-radius: 12px;
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .modalContent {
+    width: 500px;
+    height: 483px;
+  }
+}

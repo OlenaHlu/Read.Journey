@@ -1,9 +1,24 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchBooks } from "./operations";
-import { BooksState, BooksResponse, Book } from "./types";
+import { fetchBooks, fetchBookById } from "./operations";
+import { BooksState, BooksResponse, BookIdResponse } from "./types";
 
 const initialState: BooksState = {
   books: [],
+  book: {
+    _id: "",
+    title: "",
+    author: "",
+    imageUrl: "",
+    totalPages: 0,
+    status: "",
+    owner: "",
+    progress: [],
+    timeLeftToRead: {
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    },
+  },
   currentPage: 1,
   perPage: 10,
   totalPages: 0,
@@ -57,7 +72,17 @@ const booksSlice = createSlice({
           state.error = null;
         }
       )
-      .addCase(fetchBooks.rejected, handleRejected);
+      .addCase(fetchBooks.rejected, handleRejected)
+      .addCase(fetchBookById.pending, handlePending)
+      .addCase(
+        fetchBookById.fulfilled,
+        (state, action: PayloadAction<BookIdResponse>) => {
+          state.isLoading = false;
+          state.book = action.payload;
+          state.error = null;
+        }
+      )
+      .addCase(fetchBookById.rejected, handleRejected);
   },
 });
 
