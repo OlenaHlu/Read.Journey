@@ -4,12 +4,16 @@ import { type BooksResponse, BookIdResponse } from "./types";
 
 export const fetchBooks = createAsyncThunk<
   BooksResponse,
-  { page: number; limit: number },
+  {
+    page: number;
+    limit: number;
+    inputFilters: { title: string; author: string };
+  },
   { rejectValue: string }
->("/books/fetchBooks", async ({ page, limit }, thunkAPI) => {
+>("/books/fetchBooks", async ({ page, limit, inputFilters }, thunkAPI) => {
   try {
     const response = await axiosInstance.get(
-      `/books/recommend?page=${page}&limit=${limit}`
+      `/books/recommend?page=${page}&limit=${limit}&title=${inputFilters.title}&author=${inputFilters.author}`
     );
     console.log("Response data from Firebase:", response.data);
     return response.data;

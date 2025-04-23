@@ -4,9 +4,15 @@ export type BooksState = {
   currentPage: number;
   perPage: number;
   totalPages: number;
-  filters: string;
+  filtersLib: string;
+  inputFilters: InputFilters;
   isLoading: boolean;
   error: string | null;
+};
+
+export type InputFilters = {
+  title: string;
+  author: string;
 };
 
 export type BooksResponse = {

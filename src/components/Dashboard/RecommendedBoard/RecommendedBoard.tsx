@@ -1,14 +1,37 @@
 import css from "./RecommendedBoard.module.css";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import booksIcon from "../../../assets/book.png";
+import { useAppDispatch } from "../../../redux/reduxHook";
+import { setInputFilters } from "../../../redux/books/slice";
 
 const RecommendedBoard = () => {
-  const [bookTitle, setBookTitle] = useState("");
-  const [author, setAuthor] = useState("");
+  const dispatch = useAppDispatch();
+  const [titleFilter, setTitleFilter] = useState("");
+  const [authorFilter, setAuthorFilter] = useState("");
 
-  const handleSubmit = () => {};
+  const handleTitleChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setTitleFilter(event.target.value);
+    },
+    []
+  );
+
+  const handleAuthorChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setAuthorFilter(event.target.value);
+    },
+    []
+  );
+
+  const handleSubmit = useCallback(
+    (event: React.FormEvent) => {
+      event.preventDefault();
+      dispatch(setInputFilters({ title: titleFilter, author: authorFilter }));
+    },
+    [titleFilter, authorFilter, dispatch]
+  );
 
   return (
     <div className={css.boardRec}>
@@ -22,9 +45,9 @@ const RecommendedBoard = () => {
             <input
               type="text"
               id="bookTitle"
-              // value={bookTitle}
+              value={titleFilter}
               placeholder=" "
-              // onChange={() => {}}
+              onChange={handleTitleChange}
               className={css.inputField}
             />
           </div>
@@ -35,9 +58,9 @@ const RecommendedBoard = () => {
             <input
               type="text"
               id="author"
-              // value={author}
+              value={authorFilter}
               placeholder=" "
-              // onChange={() => {}}
+              onChange={handleAuthorChange}
               className={`${css.inputField} ${css.inputNext}`}
             />
           </div>

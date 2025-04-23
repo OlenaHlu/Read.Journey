@@ -7,6 +7,7 @@ import {
   selectCurrentPage,
   selectTotalPages,
   selectPerPage,
+  selectInputFilters,
 } from "../../redux/books/selectors";
 import { selectToken } from "../../redux/auth/selectors";
 import { useEffect } from "react";
@@ -21,12 +22,13 @@ import useWindowSize from "../../components/hooks/useWindowSize";
 
 const Recommended = () => {
   const dispatch = useAppDispatch();
-  const { books } = useAppSelector(selectBooks);
+  const books = useAppSelector(selectBooks);
   const token = useAppSelector(selectToken);
   const currentPage = useAppSelector(selectCurrentPage);
   const totalPages = useAppSelector(selectTotalPages);
   const perPage = useAppSelector(selectPerPage);
   const windowSize = useWindowSize();
+  const inputFilters = useAppSelector(selectInputFilters);
 
   useEffect(() => {
     dispatch(resetPage());
@@ -38,6 +40,8 @@ const Recommended = () => {
       dispatch(setPerPage(2));
     } else if (windowSize.width <= 768) {
       dispatch(setPerPage(8));
+    } else if (windowSize.width <= 1024) {
+      dispatch(setPerPage(8));
     } else if (windowSize.width <= 1440) {
       dispatch(setPerPage(10));
     }
@@ -45,9 +49,26 @@ const Recommended = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(fetchBooks({ page: currentPage, limit: perPage }));
+      dispatch(
+        fetchBooks({
+          page: currentPage,
+          limit: perPage,
+          inputFilters: { title: "", author: "" },
+        })
+      );
     }
   }, [dispatch, token, currentPage, perPage]);
+
+  // console.log("Books:", books);
+  // console.log("Current Page:", currentPage);
+  // console.log("Total Pages:", totalPages);
+  // console.log("Per Page:", perPage);
+
+  useEffect(() => {
+    if ((token && inputFilters.title !== "") || inputFilters.author !== "") {
+      dispatch(fetchBooks({ page: currentPage, limit: perPage, inputFilters }));
+    }
+  }, [dispatch, token, currentPage, perPage, inputFilters]);
 
   const handlePrevPage = () => {
     dispatch(decrementPage());
@@ -56,11 +77,6 @@ const Recommended = () => {
   const handleNextPage = () => {
     dispatch(incrementPage(currentPage + 1));
   };
-
-  console.log("Books:", books);
-  console.log("Current Page:", currentPage);
-  console.log("Total Pages:", totalPages);
-  console.log("Per Page:", perPage);
 
   return (
     <div className={css.recomContainer}>

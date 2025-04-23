@@ -22,7 +22,11 @@ const initialState: BooksState = {
   currentPage: 1,
   perPage: 10,
   totalPages: 0,
-  filters: "All books",
+  filtersLib: "All books",
+  inputFilters: {
+    title: "",
+    author: "",
+  },
   isLoading: false,
   error: null,
 };
@@ -53,11 +57,20 @@ const booksSlice = createSlice({
     setPerPage(state, action) {
       state.perPage = action.payload;
     },
-    setFilters(state, action) {
-      state.filters = action.payload;
+    setFiltersLib(state, action) {
+      state.filtersLib = action.payload;
     },
-    resetFilters(state) {
-      state.filters = "All books";
+    resetFiltersLib(state) {
+      state.filtersLib = "All books";
+    },
+    setInputFilters(state, action) {
+      state.inputFilters = action.payload;
+    },
+    resetInputFilters(state) {
+      state.inputFilters = {
+        title: "",
+        author: "",
+      };
     },
   },
   extraReducers: (builder) => {
@@ -91,7 +104,9 @@ export const {
   incrementPage,
   decrementPage,
   setPerPage,
-  setFilters,
-  resetFilters,
+  setFiltersLib,
+  resetFiltersLib,
+  setInputFilters,
+  resetInputFilters,
 } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;

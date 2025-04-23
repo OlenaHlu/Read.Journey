@@ -2,8 +2,8 @@ import css from "./LibraryFilter.module.css";
 
 import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/reduxHook";
-import { selectFilters } from "../../../redux/books/selectors";
-import { setFilters, resetFilters } from "../../../redux/books/slice";
+import { selectFiltersLib } from "../../../redux/books/selectors";
+import { setFiltersLib, resetFiltersLib } from "../../../redux/books/slice";
 import Icon from "../../common/Icon";
 
 // type LibraryFilterProps = {
@@ -14,18 +14,18 @@ import Icon from "../../common/Icon";
 const LibraryFilter = () => {
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const useFilters = useAppSelector(selectFilters);
+  const useFilters = useAppSelector(selectFiltersLib);
 
   const filters = ["Unread", "In progress", "Done", "All books"];
 
   const togggleDropDown = () => setIsOpen((prev) => !prev);
 
   useEffect(() => {
-    dispatch(resetFilters());
+    dispatch(resetFiltersLib());
   }, [dispatch]);
 
   const handleFiltersClick = (filter: string) => {
-    dispatch(setFilters(filter));
+    dispatch(setFiltersLib(filter));
     setIsOpen(false);
   };
   return (
