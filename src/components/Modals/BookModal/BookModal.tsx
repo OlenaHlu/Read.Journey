@@ -2,6 +2,9 @@ import css from "./BookModal.module.css";
 import Icon from "../../../components/common/Icon";
 import { type Book } from "../../../redux/books/types";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
+import { addToLibrary } from "../../../redux/books/slice";
+import { selectIsLoggedIn } from "../../../redux/auth/selectors";
+import { useAppDispatch, useAppSelector } from "../../../redux/reduxHook";
 
 type bookModalProps = {
   book: Book;
@@ -9,6 +12,18 @@ type bookModalProps = {
 };
 
 const BookModal = ({ book, closeModal }: bookModalProps) => {
+  const dispatch = useAppDispatch();
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+
+  const handleAddToLibrary = () => {
+    if (isLoggedIn) {
+      dispatch(addToLibrary(book));
+      closeModal();
+    } else {
+      alert("Please log in to add books to your library.");
+    }
+  };
+
   return (
     <ModalWrapper closeModal={closeModal}>
       <div className={css.bookContainer}>
@@ -24,7 +39,11 @@ const BookModal = ({ book, closeModal }: bookModalProps) => {
           <h4 className={css.bookTitle}>{book.title}</h4>
           <p className={css.bookAuthor}>{book.author}</p>
           <p className={css.bookPages}>{book.totalPages} pages</p>
-          <button className={css.addBtn} type="button">
+          <button
+            className={css.addBtn}
+            type="button"
+            onClick={handleAddToLibrary}
+          >
             Add to library
           </button>
         </div>

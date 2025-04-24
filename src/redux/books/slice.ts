@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchBooks, fetchBookById } from "./operations";
-import { BooksState, BooksResponse, BookIdResponse } from "./types";
+import { BooksState, BooksResponse, BookIdResponse, Book } from "./types";
 
 const initialState: BooksState = {
   books: [],
@@ -19,6 +19,7 @@ const initialState: BooksState = {
       seconds: 0,
     },
   },
+  favoriteBooks: [] as Book[],
   currentPage: 1,
   perPage: 10,
   totalPages: 0,
@@ -72,6 +73,20 @@ const booksSlice = createSlice({
         author: "",
       };
     },
+    addToLibrary(state, action: PayloadAction<Book>) {
+      const bookToAdd = action.payload;
+      const isBookAlreadyInLibrary = state.favoriteBooks.some(
+        (book) => book._id === bookToAdd._id
+      );
+      if (!isBookAlreadyInLibrary) {
+        state.favoriteBooks.push(bookToAdd);
+      }
+    },
+    removeFromLibrary(state, action: PayloadAction<string>) {
+      state.favoriteBooks = state.favoriteBooks.filter(
+        (book) => book._id !== action.payload
+      );
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -108,5 +123,7 @@ export const {
   resetFiltersLib,
   setInputFilters,
   resetInputFilters,
+  addToLibrary,
+  removeFromLibrary,
 } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;

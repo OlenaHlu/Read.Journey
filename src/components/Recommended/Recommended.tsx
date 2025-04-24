@@ -49,20 +49,17 @@ const Recommended = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(
-        fetchBooks({
-          page: currentPage,
-          limit: perPage,
-          inputFilters: { title: "", author: "" },
-        })
-      );
+      const queryParams = {
+        page: currentPage,
+        limit: perPage,
+        inputFilters: {
+          title: inputFilters.title,
+          author: inputFilters.author,
+        },
+      };
+      dispatch(fetchBooks(queryParams));
     }
-  }, [dispatch, token, currentPage, perPage]);
-
-  // console.log("Books:", books);
-  // console.log("Current Page:", currentPage);
-  // console.log("Total Pages:", totalPages);
-  // console.log("Per Page:", perPage);
+  }, [dispatch, token, currentPage, perPage, inputFilters]);
 
   useEffect(() => {
     if ((token && inputFilters.title !== "") || inputFilters.author !== "") {
