@@ -50,7 +50,7 @@ const MyLibrary = () => {
       <LibraryFilter />
       {isLogedIn ? (
         <>
-          {favoriteBooks.length === 0 ? (
+          {Array.isArray(favoriteBooks) && favoriteBooks.length === 0 ? (
             <div className={css.informBlock}>
               <Link to="/recommended" className={css.imgContainer}>
                 <img src={booksIcon} alt="Books" className={css.booksImage} />
