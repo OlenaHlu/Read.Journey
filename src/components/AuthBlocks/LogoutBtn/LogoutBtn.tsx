@@ -11,6 +11,10 @@ const LogoutBtn = ({ isModal }: { isModal?: boolean }) => {
 
   const handleLogout = () => {
     console.log("logout");
+    console.log(
+      "Token before dispatch(signOut):",
+      localStorage.getItem("token")
+    );
     dispatch(signOut());
     navigate("/");
   };

@@ -21,7 +21,10 @@
   font-size: 20px;
   line-height: 1;
   letter-spacing: -0.025rem;
-  color: var(--main-light);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .paginationBlock {
@@ -57,6 +60,16 @@
   cursor: not-allowed;
   opacity: 0.5;
   border-color: rgba(249, 249, 249, 0.2);
+}
+
+.pageOfPages {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*=================Tablet=================*/

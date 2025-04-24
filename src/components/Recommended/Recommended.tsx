@@ -15,8 +15,8 @@ import { fetchBooks } from "../../redux/books/operations";
 import {
   incrementPage,
   decrementPage,
-  setPerPage,
   resetPage,
+  resetInputFilters,
 } from "../../redux/books/slice";
 import useWindowSize from "../../components/hooks/useWindowSize";
 
@@ -27,25 +27,14 @@ const Recommended = () => {
   const currentPage = useAppSelector(selectCurrentPage);
   const totalPages = useAppSelector(selectTotalPages);
   const perPage = useAppSelector(selectPerPage);
-  const windowSize = useWindowSize();
   const inputFilters = useAppSelector(selectInputFilters);
 
   useEffect(() => {
     dispatch(resetPage());
+    dispatch(resetInputFilters());
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(resetPage());
-    if (windowSize.width <= 375) {
-      dispatch(setPerPage(2));
-    } else if (windowSize.width <= 768) {
-      dispatch(setPerPage(8));
-    } else if (windowSize.width <= 1024) {
-      dispatch(setPerPage(8));
-    } else if (windowSize.width <= 1440) {
-      dispatch(setPerPage(10));
-    }
-  }, [windowSize.width, dispatch]);
+  useWindowSize();
 
   useEffect(() => {
     if (token) {
@@ -92,7 +81,9 @@ const Recommended = () => {
               >
                 <Icon className={css.iconLeft} iconName="chevron" />
               </button>
-              {/* <span>{`${currentPage} / ${totalPages}`}</span> */}
+              <span
+                className={css.pageOfPages}
+              >{`${currentPage} of ${totalPages}`}</span>
               <button
                 type="button"
                 className={`${css.btn} ${

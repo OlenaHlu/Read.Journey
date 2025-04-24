@@ -41,6 +41,25 @@
   color: var(--light-gray);
 }
 
+.libraryList {
+  display: flex;
+  flex-direction: row;
+
+  gap: 21px;
+  margin-top: 14px;
+}
+
+.iconTrash {
+  width: 28px;
+  height: 28px;
+}
+
+.bookCover {
+  border-radius: 8px;
+  width: 137px;
+  height: 208px;
+}
+
 /*=================Tablet=================*/
 @media screen and (min-width: 768px) {
   .libraryContainer {
@@ -65,6 +84,11 @@
     width: 70px;
     height: 70px;
   }
+
+  .libraryList {
+    gap: 25px;
+    flex-wrap: wrap;
+  }
 }
 
 /*=================Desktop=================*/
@@ -77,5 +101,9 @@
 
   .informBlock {
     margin: 147px auto auto auto;
+  }
+
+  .libraryList {
+    gap: 20px;
   }
 }

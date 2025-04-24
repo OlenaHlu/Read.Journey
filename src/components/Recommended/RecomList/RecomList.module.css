@@ -1,6 +1,7 @@
 .booksList {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 21px;
 }
 
@@ -8,7 +9,6 @@
 @media screen and (min-width: 768px) {
   .booksList {
     gap: 25px;
-    flex-wrap: wrap;
   }
 }
 
