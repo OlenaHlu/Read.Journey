@@ -43,7 +43,9 @@ const MyLibrary = () => {
   const displayedBooks = Array.isArray(favoriteBooks)
     ? favoriteBooks.slice(startIndex, endIndex)
     : [];
-  const calculatedTotalPages = Math.ceil(favoriteBooks.length / perPage);
+  const calculatedTotalPages = Array.isArray(favoriteBooks)
+    ? Math.ceil(favoriteBooks.length / perPage)
+    : 0;
 
   return (
     <div className={css.libraryContainer}>
