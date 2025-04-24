@@ -40,7 +40,9 @@ const MyLibrary = () => {
 
   const startIndex = (currentPage - 1) * perPage;
   const endIndex = startIndex + perPage;
-  const displayedBooks = favoriteBooks.slice(startIndex, endIndex);
+  const displayedBooks = Array.isArray(favoriteBooks)
+    ? favoriteBooks.slice(startIndex, endIndex)
+    : [];
   const calculatedTotalPages = Math.ceil(favoriteBooks.length / perPage);
 
   return (
