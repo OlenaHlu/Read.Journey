@@ -64,50 +64,54 @@ const MyLibrary = () => {
               </p>
             </div>
           ) : (
-            <ul className={css.libraryList}>
-              {displayedBooks.map((book) => (
-                <li key={book._id} className={css.libraryItem}>
-                  <img src={book.imageUrl} className={css.bookCover} />
-                  <div className={css.itemFooter}>
-                    <div className={css.aboutBook}>
-                      <h4 className={css.bookTitle}>{book.title}</h4>
-                      <p className={css.bookAuthor}>{book.author}</p>
+            <>
+              <ul className={css.libraryList}>
+                {displayedBooks.map((book) => (
+                  <li key={book._id} className={css.libraryItem}>
+                    <img src={book.imageUrl} className={css.bookCover} />
+                    <div className={css.itemFooter}>
+                      <div className={css.aboutBook}>
+                        <h4 className={css.bookTitle}>{book.title}</h4>
+                        <p className={css.bookAuthor}>{book.author}</p>
+                      </div>
+                      <button
+                        className={css.deleteBtn}
+                        onClick={() => handleRemoveFromLibrary(book._id)}
+                        type="button"
+                      >
+                        <Icon iconName="trash-2" className={css.iconTrash} />
+                      </button>
                     </div>
-                    <button
-                      className={css.deleteBtn}
-                      onClick={() => handleRemoveFromLibrary(book._id)}
-                      type="button"
-                    >
-                      <Icon iconName="trash-2" className={css.iconTrash} />
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
+                  </li>
+                ))}
+              </ul>
+              <div className={css.paginationBlock}>
+                <button
+                  type="button"
+                  className={`${css.btn} ${
+                    currentPage === 1 ? css.disabled : ""
+                  }`}
+                  onClick={handlePrevPage}
+                  disabled={currentPage === 1}
+                >
+                  <Icon className={css.iconLeft} iconName="chevron" />
+                </button>
+                <span
+                  className={css.pageOfPages}
+                >{`${currentPage} of ${calculatedTotalPages}`}</span>
+                <button
+                  type="button"
+                  className={`${css.btn} ${
+                    currentPage === totalPages ? css.disabled : ""
+                  }`}
+                  onClick={handleNextPage}
+                  disabled={currentPage === calculatedTotalPages}
+                >
+                  <Icon className={css.iconRight} iconName="chevron" />
+                </button>
+              </div>
+            </>
           )}
-          <div className={css.paginationBlock}>
-            <button
-              type="button"
-              className={`${css.btn} ${currentPage === 1 ? css.disabled : ""}`}
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-            >
-              <Icon className={css.iconLeft} iconName="chevron" />
-            </button>
-            <span
-              className={css.pageOfPages}
-            >{`${currentPage} of ${calculatedTotalPages}`}</span>
-            <button
-              type="button"
-              className={`${css.btn} ${
-                currentPage === totalPages ? css.disabled : ""
-              }`}
-              onClick={handleNextPage}
-              disabled={currentPage === calculatedTotalPages}
-            >
-              <Icon className={css.iconRight} iconName="chevron" />
-            </button>
-          </div>
         </>
       ) : (
         <div className={css.notLoggedInMessage}>
