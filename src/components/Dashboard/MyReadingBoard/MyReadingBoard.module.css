@@ -1,0 +1,147 @@
+.readingBoard {
+  padding: 20px 20px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formTitle {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.0125rem;
+  margin: 0 0 8px 14px;
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.inputField {
+  border-radius: 12px;
+  padding: 14px 14px 14px 90px;
+  width: 295px;
+  height: 44px;
+  background-color: var(--dark-gray);
+  border: none;
+
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.33;
+  letter-spacing: -0.0125rem;
+  color: var(--main-light);
+  justify-content: center;
+}
+
+.inputLabel {
+  position: absolute;
+  pointer-events: none;
+  top: 15px;
+  left: 14px;
+
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.33;
+  letter-spacing: -0.0125rem;
+  text-align: center;
+  color: var(--light-gray);
+}
+
+.startBtn,
+.stopBtn {
+  margin-top: 20px;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+  padding: 10px 20px;
+  width: 91px;
+  height: 38px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: 0.0175rem;
+  color: var(--main-light);
+}
+
+.progressTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.02rem;
+  margin-bottom: 14px;
+}
+
+.progressText {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.29;
+  letter-spacing: -0.0175rem;
+  color: var(--light-gray);
+  margin-bottom: 20px;
+}
+
+.progressImg {
+  width: 80px;
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .readingBoard {
+    padding: 32px 32px 84px 32px;
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  .formTitle {
+    font-size: 12px;
+  }
+
+  .inputField {
+    height: 50px;
+    padding: 16px 16px 16px 105px;
+
+    font-size: 12px;
+  }
+
+  .inputLabel {
+    top: 17px;
+    left: 16px;
+
+    font-size: 12px;
+  }
+
+  .startBtn,
+  .stopBtn {
+    margin-top: 20px;
+    padding: 12px 28px;
+    width: 114px;
+    height: 42px;
+
+    font-size: 16px;
+    line-height: 1.12;
+    letter-spacing: 0.02rem;
+  }
+
+  .progressText {
+    font-size: 13px;
+    margin-bottom: 50px;
+  }
+
+  .progressImg {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+  .readingBoard {
+    padding: 40px 20px 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

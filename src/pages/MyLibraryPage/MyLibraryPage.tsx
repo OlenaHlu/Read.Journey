@@ -1,4 +1,4 @@
-import css from "./MyLibraryPage.module.css";
+import css from "../MainLayout.module.css";
 
 import Header from "../../components/Header/Header";
 import Dashboard from "../../components/Dashboard/Dashboard";
@@ -9,7 +9,7 @@ const MyLibraryPage = () => {
   return (
     <>
       <Header />
-      <main className={css.recomMain}>
+      <main className={css.main}>
         <Dashboard>
           <MyLibraryBoard />
         </Dashboard>

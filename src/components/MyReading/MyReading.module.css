@@ -1,0 +1,26 @@
+.readingContainer {
+  border-radius: 30px;
+  width: 335px;
+  height: 471px;
+  background-color: var(--dark-gray2);
+  padding: 40px 20px;
+  margin: 0 auto 20px auto;
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .readingContainer {
+    width: 704px;
+    height: 518px;
+    padding: 40px;
+  }
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+  .readingContainer {
+    width: 847px;
+    height: 651px;
+    margin: 0;
+  }
+}

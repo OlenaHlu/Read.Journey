@@ -1,4 +1,4 @@
-.recomMain {
+.main {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -6,14 +6,14 @@
 
 /*=================Tablet=================*/
 @media screen and (min-width: 768px) {
-  .recomMain {
+  .main {
     gap: 16px;
   }
 }
 
 /*=================Desktop=================*/
 @media screen and (min-width: 1440px) {
-  .recomMain {
+  .main {
     display: flex;
     flex-direction: row;
     width: 1216px;
