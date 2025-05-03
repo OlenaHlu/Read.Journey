@@ -1,0 +1,20 @@
+.diarySection {
+  width: 295px;
+  height: 211px;
+  border-radius: 12px;
+  background-color: var(--dark-gray);
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .diarySection {
+    width: 313px;
+  }
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+  .diarySection {
+    height: 373px;
+  }
+}

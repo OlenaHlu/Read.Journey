@@ -1,0 +1,20 @@
+.statsSection {
+  width: 295px;
+  height: 211px;
+  border-radius: 12px;
+  background-color: var(--dark-gray);
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .statsSection {
+    width: 313px;
+  }
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+  .statsSection {
+    height: 281px;
+  }
+}

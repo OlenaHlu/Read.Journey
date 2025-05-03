@@ -1,13 +1,13 @@
 .readingBoard {
-  padding: 20px 20px 40px 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
 }
 
 .formTitle {
   font-weight: 500;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.2;
   letter-spacing: -0.0125rem;
   margin: 0 0 8px 14px;
@@ -83,8 +83,13 @@
 .progressImg {
   width: 80px;
   height: 80px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 20px auto;
+}
+
+.diaryAndStats {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .titleAndTabs {
@@ -95,7 +100,7 @@
 }
 
 .differentTitle {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
   line-height: 1;
   letter-spacing: -0.0225rem;
@@ -114,12 +119,16 @@
   height: 16px;
 }
 
+.statsText {
+  display: none;
+}
+
 /*=================Tablet=================*/
 @media screen and (min-width: 768px) {
   .readingBoard {
-    padding: 32px 32px 84px 32px;
+    padding: 32px;
     flex-direction: row;
-    gap: 40px;
+    justify-content: space-between;
   }
 
   .formTitle {
@@ -129,7 +138,6 @@
   .inputField {
     height: 50px;
     padding: 16px 16px 16px 105px;
-
     font-size: 12px;
   }
 
@@ -160,15 +168,37 @@
   .progressImg {
     width: 100px;
     height: 100px;
+    margin-bottom: 52px;
+  }
+
+  .diaryAndStats {
+    width: 312px;
   }
 }
 
 /*=================Desktop=================*/
 @media screen and (min-width: 1440px) {
   .readingBoard {
-    padding: 40px 20px 40px 20px;
+    padding: 40px 20px 20px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 40px;
+  }
+
+  .statsComponent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .statsText {
+    display: flex;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.29;
+    letter-spacing: -0.0175rem;
+    color: var(--light-gray);
   }
 }

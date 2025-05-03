@@ -69,16 +69,35 @@ const MyReadingBoard = () => {
               onClick={() => handleTabClick("diary")}
               className={css.btnTab}
             >
-              <Icon iconName="hourglass" className={css.iconTab} />
+              <Icon
+                iconName="hourglass"
+                className={css.iconTab}
+                color={activeTab === "diary" ? "white" : "gray"}
+              />
             </button>
             <button
               onClick={() => handleTabClick("statistics")}
               className={css.btnTab}
             >
-              <Icon iconName="pie-chart" className={css.iconTab} />
+              <Icon
+                iconName="pie-chart"
+                className={css.iconTab}
+                color={activeTab === "statistics" ? "white" : "gray"}
+              />
             </button>
           </div>
         </div>
+        {activeTab === "diary" && <Diary />}
+        {activeTab === "statistics" && (
+          <div className={css.statsComponent}>
+            <p className={css.statsText}>
+              Each page, each chapter is a new round of knowledge, a new step
+              towards understanding. By rewriting statistics, we create our own
+              reading history.
+            </p>
+            <Statistics />
+          </div>
+        )}
       </div>
     </div>
   );
