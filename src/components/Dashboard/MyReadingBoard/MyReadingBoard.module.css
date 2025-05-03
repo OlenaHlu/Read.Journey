@@ -87,6 +87,33 @@
   margin-right: auto;
 }
 
+.titleAndTabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.differentTitle {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.0225rem;
+}
+
+.tabBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconTab {
+  width: 16px;
+  height: 16px;
+}
+
 /*=================Tablet=================*/
 @media screen and (min-width: 768px) {
   .readingBoard {
