@@ -4,8 +4,9 @@ import Icon from "../../../components/common/Icon";
 import { type Book } from "../../../redux/books/types";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import SuccessModal from "../SuccessModal/SuccessModal";
+import InfoModal from "../InfoModal/InfoModal";
 import { addToLibrary } from "../../../redux/books/slice";
-import { selectIsLoggedIn } from "../../../redux/auth/selectors";
+import { selectFavoritesBook } from "../../../redux/books/selectors";
 import { useAppDispatch, useAppSelector } from "../../../redux/reduxHook";
 
 type bookModalProps = {
@@ -15,29 +16,35 @@ type bookModalProps = {
 
 const BookModal = ({ book, closeModal }: bookModalProps) => {
   const dispatch = useAppDispatch();
-  const isLoggedIn = useAppSelector(selectIsLoggedIn);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const favoriteBook = useAppSelector(selectFavoritesBook);
+  const [modalType, setModalType] = useState<"success" | "info" | null>(null);
+
+  const isAlreadyInLibrary = favoriteBook.some((b) => b._id === book._id);
 
   const handleAddToLibrary = () => {
-    if (isLoggedIn) {
-      dispatch(addToLibrary(book));
-
-      setShowSuccess(true);
+    if (isAlreadyInLibrary) {
+      setModalType("info");
     } else {
-      alert("Please log in to add books to your library.");
+      dispatch(addToLibrary(book));
+      setModalType("success");
     }
   };
 
-  const handleCloseSuccess = () => {
-    setShowSuccess(false);
+  const handleClose = () => {
+    setModalType(null);
     closeModal();
   };
 
   return (
     <ModalWrapper closeModal={closeModal}>
-      {showSuccess ? (
-        <SuccessModal closeModal={handleCloseSuccess} />
-      ) : (
+      {modalType === "success" && <SuccessModal closeModal={handleClose} />}
+      {modalType === "info" && (
+        <InfoModal
+          message="This book is already in your library!"
+          closeModal={handleClose}
+        />
+      )}
+      {!modalType && (
         <div className={css.bookContainer}>
           <button onClick={closeModal} type="button" className={css.closeBtn}>
             <Icon iconName="close" className={css.icon} />
