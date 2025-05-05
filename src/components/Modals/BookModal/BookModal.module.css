@@ -1,11 +1,14 @@
 .bookContainer {
   position: relative;
+  width: 335px;
+  height: 421px;
+  padding: 16px;
 }
 
 .icon {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 16px;
+  right: 16px;
   width: 22px;
   height: 22px;
 }
@@ -67,6 +70,11 @@
 
 /*=================Tablet=================*/
 @media screen and (min-width: 768px) {
+  .bookContainer {
+    width: 500px;
+    height: 483px;
+  }
+
   .modalImage {
     margin-top: 12px;
   }

@@ -13,7 +13,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 63px auto auto auto;
+  margin: 63px auto 100px auto;
   gap: 10px;
 }
 
@@ -162,7 +162,7 @@
   .informBlock {
     width: 274px;
     height: 186px;
-    margin: 86px auto auto auto;
+    margin: 86px auto 160px auto;
     gap: 20px;
   }
 
