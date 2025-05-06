@@ -1,0 +1,68 @@
+.infoContainer {
+  position: relative;
+  width: 335px;
+  height: 272px;
+  padding: 60px 46px;
+}
+
+.icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 22px;
+  height: 22px;
+}
+
+.emoji {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 1;
+  letter-spacing: -0.00625rem;
+  margin-left: 96.5px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.0225rem;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.0175rem;
+  text-align: center;
+  color: var(--light-gray);
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+  .infoContainer {
+    width: 342px;
+    height: 290px;
+    padding: 50px;
+  }
+
+  .emoji {
+    margin-left: 96px;
+    font-size: 68px;
+    line-height: 1.03;
+    letter-spacing: -0.085rem;
+  }
+
+  .title {
+    font-size: 20px;
+    letter-spacing: -0.025rem;
+    margin-top: 32px;
+    margin-bottom: 14px;
+  }
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+}

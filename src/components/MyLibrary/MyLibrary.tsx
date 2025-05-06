@@ -3,6 +3,7 @@ import css from "./MyLibrary.module.css";
 import LibraryFilter from "./LibraryFilter/LibraryFilter";
 import { Link } from "react-router-dom";
 import booksIcon from "../../assets/book.png";
+import { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../redux/reduxHook";
 import {
   selectFavoritesBook,
@@ -18,6 +19,7 @@ import { incrementPage, decrementPage } from "../../redux/books/slice";
 
 const MyLibrary = () => {
   const dispatch = useAppDispatch();
+  const [isOpen, setIsOpen] = useState(false);
   const favoriteBooks = useAppSelector(selectFavoritesBook);
   const isLogedIn = useAppSelector(selectIsLoggedIn);
   const currentPage = useAppSelector(selectCurrentPage);
@@ -36,6 +38,14 @@ const MyLibrary = () => {
 
   const handleNextPage = () => {
     dispatch(incrementPage(currentPage + 1));
+  };
+
+  const modalOpen = () => {
+    setIsOpen(true);
+  };
+
+  const modalClose = () => {
+    setIsOpen(false);
   };
 
   const startIndex = (currentPage - 1) * perPage;
@@ -68,7 +78,9 @@ const MyLibrary = () => {
               <ul className={css.libraryList}>
                 {displayedBooks.map((book) => (
                   <li key={book._id} className={css.libraryItem}>
-                    <img src={book.imageUrl} className={css.bookCover} />
+                    <button type="button" onClick={modalOpen}>
+                      <img src={book.imageUrl} className={css.bookCover} />
+                    </button>
                     <div className={css.itemFooter}>
                       <div className={css.aboutBook}>
                         <h4 className={css.bookTitle}>{book.title}</h4>
