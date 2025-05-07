@@ -17,6 +17,8 @@ export const selectInputFilters = (state: RootState) =>
 export const selectFavoritesBook = (state: RootState) =>
   state.books.favoriteBooks;
 
+export const selectReadingBook = (state: RootState) => state.books.readingBook;
+
 export const selectIsLoading = (state: RootState) => state.books.isLoading;
 
 export const selectError = (state: RootState) => state.books.error;

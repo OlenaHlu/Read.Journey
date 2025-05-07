@@ -9,6 +9,7 @@ export type BooksState = {
   isLoading: boolean;
   error: string | null;
   favoriteBooks: Book[];
+  readingBook: Book | null;
 };
 
 export type InputFilters = {

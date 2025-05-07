@@ -16,6 +16,8 @@ import Icon from "../common/Icon";
 import { removeFromLibrary } from "../../redux/books/slice";
 import useWindowSize from "../hooks/useWindowSize";
 import { incrementPage, decrementPage } from "../../redux/books/slice";
+import ReadingModal from "../Modals/ReadingModal/ReadingModal";
+import { type Book } from "../../redux/books/types";
 
 const MyLibrary = () => {
   const dispatch = useAppDispatch();
@@ -25,6 +27,7 @@ const MyLibrary = () => {
   const currentPage = useAppSelector(selectCurrentPage);
   const totalPages = useAppSelector(selectTotalPages);
   const perPage = useAppSelector(selectPerPage);
+  const [bookToOpen, setBookToOpen] = useState<Book | null>(null);
 
   useWindowSize();
 
@@ -40,7 +43,8 @@ const MyLibrary = () => {
     dispatch(incrementPage(currentPage + 1));
   };
 
-  const modalOpen = () => {
+  const modalOpen = (book: Book) => {
+    setBookToOpen(book);
     setIsOpen(true);
   };
 
@@ -78,7 +82,7 @@ const MyLibrary = () => {
               <ul className={css.libraryList}>
                 {displayedBooks.map((book) => (
                   <li key={book._id} className={css.libraryItem}>
-                    <button type="button" onClick={modalOpen}>
+                    <button type="button" onClick={() => modalOpen(book)}>
                       <img src={book.imageUrl} className={css.bookCover} />
                     </button>
                     <div className={css.itemFooter}>
@@ -129,6 +133,9 @@ const MyLibrary = () => {
         <div className={css.notLoggedInMessage}>
           <p>Please log in to view your library.</p>
         </div>
+      )}
+      {isOpen && bookToOpen && (
+        <ReadingModal closeModal={modalClose} book={bookToOpen} />
       )}
     </div>
   );

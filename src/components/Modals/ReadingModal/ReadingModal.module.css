@@ -1,0 +1,22 @@
+.readContainer {
+  position: relative;
+  width: 335px;
+  height: 421px;
+  padding: 16px;
+}
+
+.icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 22px;
+  height: 22px;
+}
+
+/*=================Tablet=================*/
+@media screen and (min-width: 768px) {
+}
+
+/*=================Desktop=================*/
+@media screen and (min-width: 1440px) {
+}
