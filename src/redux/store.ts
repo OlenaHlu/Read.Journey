@@ -12,16 +12,18 @@ import {
 import storage from "redux-persist/lib/storage";
 import { authReducer } from "./auth/slice";
 import { booksReducer } from "./books/slice";
+import { libraryReducer } from "./library/slice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   books: booksReducer,
+  libraryBooks: libraryReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage: storage,
-  whitelist: ["auth", "books"],
+  whitelist: ["auth", "books", "libraryBooks"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

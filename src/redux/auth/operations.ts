@@ -14,12 +14,14 @@ export const signUp = createAsyncThunk<
   { rejectValue: string }
 >("/users/signUp", async ({ name, email, password }, thunkAPI) => {
   try {
-    const response = await axiosInstance.post("/users/signup", {
+    const response = await axiosInstance.post<User>("/users/signup", {
       name,
       email,
       password,
     });
     localStorage.setItem("token", response.data.token);
+    localStorage.setItem("refreshToken", response.data.refreshToken);
+
     return response.data;
   } catch (error) {
     if (error instanceof Error) {
