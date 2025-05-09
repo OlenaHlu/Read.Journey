@@ -1,3 +1,5 @@
 import { RootState } from "../store";
 
-export const;
+export const selectUserBooks = (userId: string) => (state: RootState) => {
+  return state.library.usersBooks[userId] || [];
+};

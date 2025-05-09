@@ -17,13 +17,13 @@ import { libraryReducer } from "./library/slice";
 const rootReducer = combineReducers({
   auth: authReducer,
   books: booksReducer,
-  libraryBooks: libraryReducer,
+  library: libraryReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage: storage,
-  whitelist: ["auth", "books", "libraryBooks"],
+  whitelist: ["auth", "books", "library"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
