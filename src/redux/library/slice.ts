@@ -53,12 +53,18 @@ const librarySlice = createSlice({
 
       //delete book;
       .addCase(removeBook.pending, handlePending)
-      .addCase(removeBook.fulfilled, (state, action: PayloadAction<string>) => {
+      .addCase(removeBook.fulfilled, (state, action) => {
         state.isLoading = false;
-        const userId = action.payload;
-        if (state.usersBooks[userId]) {
+        const bookIdToRemove = action.meta.arg.id;
+        const userId = state.usersBooks
+          ? Object.keys(state.usersBooks).find((key) =>
+              state.usersBooks[key].some((book) => book._id === bookIdToRemove)
+            )
+          : undefined;
+
+        if (userId && state.usersBooks[userId]) {
           state.usersBooks[userId] = state.usersBooks[userId].filter(
-            (book) => book._id !== action.payload
+            (book) => book._id !== bookIdToRemove
           );
         }
       })

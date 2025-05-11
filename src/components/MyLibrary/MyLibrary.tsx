@@ -1,6 +1,6 @@
 import css from "./MyLibrary.module.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import booksIcon from "../../assets/book.png";
 import { useAppSelector, useAppDispatch } from "../../redux/reduxHook";
 import {
@@ -8,10 +8,14 @@ import {
   selectTotalPages,
   selectPerPage,
 } from "../../redux/books/selectors";
-import { incrementPage, decrementPage } from "../../redux/books/slice";
+import {
+  incrementPage,
+  decrementPage,
+  resetPage,
+} from "../../redux/books/slice";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 import { type Book } from "../../redux/books/types";
-import { type addBooksId } from "../../redux/library/operations";
+import { type addBooksId, removeBook } from "../../redux/library/operations";
 import { selectUserBooks } from "../../redux/library/selectors";
 import Icon from "../common/Icon";
 import LibraryFilter from "./LibraryFilter/LibraryFilter";
@@ -34,11 +38,19 @@ const MyLibrary = () => {
     (addBooksId & Partial<Book>) | null
   >(null);
 
+  useEffect(() => {
+    dispatch(resetPage());
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   console.log("userBooks in MyLibrary:", userBooks);
+  // }, [userBooks]);
+
   useWindowSize();
 
-  // const handleRemoveFromLibrary = (bookId: string) => {
-  //   dispatch(removeFromLibrary(bookId));
-  // };
+  const handleRemoveFromLibrary = (id: string) => {
+    dispatch(removeBook({ id }));
+  };
 
   const handlePrevPage = () => {
     dispatch(decrementPage());
@@ -85,26 +97,29 @@ const MyLibrary = () => {
           ) : (
             <>
               <ul className={css.libraryList}>
-                {displayedBooks.map((book) => (
-                  <li key={book._id} className={css.libraryItem}>
-                    <button type="button" onClick={() => modalOpen(book)}>
-                      <img src={book.imageUrl} className={css.bookCover} />
-                    </button>
-                    <div className={css.itemFooter}>
-                      <div className={css.aboutBook}>
-                        <h4 className={css.bookTitle}>{book.title}</h4>
-                        <p className={css.bookAuthor}>{book.author}</p>
-                      </div>
-                      <button
-                        className={css.deleteBtn}
-                        // onClick={() => handleRemoveFromLibrary(book._id)}
-                        type="button"
-                      >
-                        <Icon iconName="trash-2" className={css.iconTrash} />
+                {displayedBooks.map((book) => {
+                  console.log("Current book:", book);
+                  return (
+                    <li key={book.bookId} className={css.libraryItem}>
+                      <button type="button" onClick={() => modalOpen(book)}>
+                        <img src={book.imageUrl} className={css.bookCover} />
                       </button>
-                    </div>
-                  </li>
-                ))}
+                      <div className={css.itemFooter}>
+                        <div className={css.aboutBook}>
+                          <h4 className={css.bookTitle}>{book.title}</h4>
+                          <p className={css.bookAuthor}>{book.author}</p>
+                        </div>
+                        <button
+                          className={css.deleteBtn}
+                          onClick={() => handleRemoveFromLibrary(book._id)}
+                          type="button"
+                        >
+                          <Icon iconName="trash-2" className={css.iconTrash} />
+                        </button>
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
               <div className={css.paginationBlock}>
                 <button

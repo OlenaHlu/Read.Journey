@@ -34,11 +34,11 @@ export const addBooks = createAsyncThunk<
 
 export const removeBook = createAsyncThunk<
   string,
-  { bookId: string },
+  { id: string },
   { rejectValue: string }
->("/library/deleteBook", async ({ bookId }, thunkAPI) => {
+>("/library/deleteBook", async ({ id }, thunkAPI) => {
   try {
-    const response = await axiosInstance.delete(`/books/remove/${bookId}`);
+    const response = await axiosInstance.delete(`/books/remove/${id}`);
     return response.data.message || "Book removed successfully";
   } catch (error) {
     if (error instanceof Error) {
