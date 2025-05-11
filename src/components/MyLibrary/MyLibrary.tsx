@@ -1,39 +1,44 @@
 import css from "./MyLibrary.module.css";
-
-import LibraryFilter from "./LibraryFilter/LibraryFilter";
 import { Link } from "react-router-dom";
-import booksIcon from "../../assets/book.png";
 import { useState } from "react";
+import booksIcon from "../../assets/book.png";
 import { useAppSelector, useAppDispatch } from "../../redux/reduxHook";
 import {
-  selectFavoritesBook,
   selectCurrentPage,
   selectTotalPages,
   selectPerPage,
 } from "../../redux/books/selectors";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
-import Icon from "../common/Icon";
-import { removeFromLibrary } from "../../redux/books/slice";
-import useWindowSize from "../hooks/useWindowSize";
 import { incrementPage, decrementPage } from "../../redux/books/slice";
-import ReadingModal from "../Modals/ReadingModal/ReadingModal";
+import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 import { type Book } from "../../redux/books/types";
+import { type addBooksId } from "../../redux/library/operations";
+import { selectUserBooks } from "../../redux/library/selectors";
+import Icon from "../common/Icon";
+import LibraryFilter from "./LibraryFilter/LibraryFilter";
+import useWindowSize from "../hooks/useWindowSize";
+import ReadingModal from "../Modals/ReadingModal/ReadingModal";
 
 const MyLibrary = () => {
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const favoriteBooks = useAppSelector(selectFavoritesBook);
+  const user = useAppSelector(selectUser);
+  const userId = user?._id;
+  const userBooks = useAppSelector((state) =>
+    selectUserBooks(state, userId || "")
+  );
   const isLogedIn = useAppSelector(selectIsLoggedIn);
   const currentPage = useAppSelector(selectCurrentPage);
   const totalPages = useAppSelector(selectTotalPages);
   const perPage = useAppSelector(selectPerPage);
-  const [bookToOpen, setBookToOpen] = useState<Book | null>(null);
+  const [bookToOpen, setBookToOpen] = useState<
+    (addBooksId & Partial<Book>) | null
+  >(null);
 
   useWindowSize();
 
-  const handleRemoveFromLibrary = (bookId: string) => {
-    dispatch(removeFromLibrary(bookId));
-  };
+  // const handleRemoveFromLibrary = (bookId: string) => {
+  //   dispatch(removeFromLibrary(bookId));
+  // };
 
   const handlePrevPage = () => {
     dispatch(decrementPage());
@@ -43,8 +48,8 @@ const MyLibrary = () => {
     dispatch(incrementPage(currentPage + 1));
   };
 
-  const modalOpen = (book: Book) => {
-    setBookToOpen(book);
+  const modalOpen = (book: addBooksId) => {
+    setBookToOpen({ ...book, recommend: undefined });
     setIsOpen(true);
   };
 
@@ -54,11 +59,11 @@ const MyLibrary = () => {
 
   const startIndex = (currentPage - 1) * perPage;
   const endIndex = startIndex + perPage;
-  const displayedBooks = Array.isArray(favoriteBooks)
-    ? favoriteBooks.slice(startIndex, endIndex)
+  const displayedBooks = Array.isArray(userBooks)
+    ? userBooks.slice(startIndex, endIndex)
     : [];
-  const calculatedTotalPages = Array.isArray(favoriteBooks)
-    ? Math.ceil(favoriteBooks.length / perPage)
+  const calculatedTotalPages = Array.isArray(userBooks)
+    ? Math.ceil(userBooks.length / perPage)
     : 0;
 
   return (
@@ -66,7 +71,7 @@ const MyLibrary = () => {
       <LibraryFilter />
       {isLogedIn ? (
         <>
-          {Array.isArray(favoriteBooks) && favoriteBooks.length === 0 ? (
+          {Array.isArray(userBooks) && userBooks.length === 0 ? (
             <div className={css.informBlock}>
               <Link to="/recommended" className={css.imgContainer}>
                 <img src={booksIcon} alt="Books" className={css.booksImage} />
@@ -92,7 +97,7 @@ const MyLibrary = () => {
                       </div>
                       <button
                         className={css.deleteBtn}
-                        onClick={() => handleRemoveFromLibrary(book._id)}
+                        // onClick={() => handleRemoveFromLibrary(book._id)}
                         type="button"
                       >
                         <Icon iconName="trash-2" className={css.iconTrash} />
@@ -135,7 +140,7 @@ const MyLibrary = () => {
         </div>
       )}
       {isOpen && bookToOpen && (
-        <ReadingModal closeModal={modalClose} book={bookToOpen} />
+        <ReadingModal closeModal={modalClose} book={bookToOpen as Book} />
       )}
     </div>
   );

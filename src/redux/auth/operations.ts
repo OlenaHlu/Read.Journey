@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../api/axiosInstance";
 
 export type User = {
+  _id: string;
   name: string;
   email: string;
   token: string;
@@ -21,14 +22,15 @@ export const signUp = createAsyncThunk<
     });
     localStorage.setItem("token", response.data.token);
     localStorage.setItem("refreshToken", response.data.refreshToken);
+    console.log("signUp fulfilled response.data:", response.data);
 
     return response.data;
-  } catch (error) {
-    if (error instanceof Error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+  } catch (error: any) {
+    console.log("signUp rejected error:", error);
+    return thunkAPI.rejectWithValue(
+      error.response?.data?.message || error.message || "Registration failed"
+    );
   }
-  return thunkAPI.rejectWithValue("Registration failed");
 });
 
 export const signIn = createAsyncThunk<
@@ -42,13 +44,16 @@ export const signIn = createAsyncThunk<
       password,
     });
     localStorage.setItem("token", response.data.token);
+
+    console.log("signIn fulfilled response.data:", response.data);
+
     return response.data;
-  } catch (error) {
-    if (error instanceof Error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+  } catch (error: any) {
+    console.log("signIn rejected error:", error);
+    return thunkAPI.rejectWithValue(
+      error.response?.data?.message || error.message || "Login failed"
+    );
   }
-  return thunkAPI.rejectWithValue("Login failed");
 });
 
 export const refreshUser = createAsyncThunk<
@@ -88,3 +93,22 @@ export const signOut = createAsyncThunk<void, void, { rejectValue: string }>(
     }
   }
 );
+
+export const fetchCurrentUser = createAsyncThunk<
+  User,
+  void,
+  { rejectValue: string }
+>("/users/current", async (_, thunkAPI) => {
+  try {
+    const response = await axiosInstance.get<User>("/users/current");
+    console.log("fetchCurrentUser fulfilled response.data:", response.data);
+    return response.data;
+  } catch (error: any) {
+    console.log("fetchCurrentUser rejected error:", error);
+    return thunkAPI.rejectWithValue(
+      error.response?.data?.message ||
+        error.message ||
+        "Failed to fetch current user info"
+    );
+  }
+});

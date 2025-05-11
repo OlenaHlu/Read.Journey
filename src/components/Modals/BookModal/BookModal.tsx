@@ -1,13 +1,15 @@
 import css from "./BookModal.module.css";
-import { useState } from "react";
-import Icon from "../../../components/common/Icon";
+import { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../redux/reduxHook";
 import { type Book } from "../../../redux/books/types";
+import { type addBooksId } from "../../../redux/library/operations";
+import { selectUser } from "../../../redux/auth/selectors";
+import { addBooks } from "../../../redux/library/operations";
+import { selectUserBooks } from "../../../redux/library/selectors";
+import Icon from "../../../components/common/Icon";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import SuccessModal from "../SuccessModal/SuccessModal";
 import InfoModal from "../InfoModal/InfoModal";
-import { addToLibrary } from "../../../redux/books/slice";
-import { selectFavoritesBook } from "../../../redux/books/selectors";
-import { useAppDispatch, useAppSelector } from "../../../redux/reduxHook";
 
 type bookModalProps = {
   book: Book;
@@ -16,20 +18,48 @@ type bookModalProps = {
 
 const BookModal = ({ book, closeModal }: bookModalProps) => {
   const dispatch = useAppDispatch();
-  const favoriteBook = useAppSelector(selectFavoritesBook);
+  const user = useAppSelector(selectUser);
+  const userId = user?._id;
+  const userBooks = useAppSelector((state) =>
+    selectUserBooks(state, userId || "")
+  ) as addBooksId[];
   const [modalType, setModalType] = useState<"success" | "info" | null>(null);
+  const [isAdding, setIsAdding] = useState(false);
+  const [addError, setAddError] = useState<string | null>(null);
 
-  const isAlreadyInLibrary = favoriteBook.some((b) => b._id === book._id);
+  const isAlreadyInLibrary = userBooks.some((b) => b.bookId === book._id);
 
-  const handleAddToLibrary = () => {
+  useEffect(() => {
+    console.log("Current User in BookModal:", user);
+    console.log("Current UserId in BookModal:", userId);
+  }, [user, userId]);
+
+  const handleAddToLibrary = async () => {
+    if (!userId) {
+      console.log("User not logged in");
+      return;
+    }
+
     if (isAlreadyInLibrary) {
       setModalType("info");
-    } else {
-      dispatch(addToLibrary(book));
+      return;
+    }
+
+    setIsAdding(true);
+    setAddError(null);
+
+    try {
+      const result = await dispatch(
+        addBooks({ userId, bookId: book._id })
+      ).unwrap();
+      console.log("Book added:", result);
       setModalType("success");
+    } catch (error: any) {
+      setAddError(error?.message || "Failed to add book to library");
+    } finally {
+      setIsAdding(false);
     }
   };
-
   const handleClose = () => {
     setModalType(null);
     closeModal();
@@ -62,6 +92,7 @@ const BookModal = ({ book, closeModal }: bookModalProps) => {
               className={css.addBtn}
               type="button"
               onClick={handleAddToLibrary}
+              disabled={isAdding}
             >
               Add to library
             </button>

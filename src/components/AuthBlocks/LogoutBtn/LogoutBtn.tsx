@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../redux/reduxHook";
 import { signOut } from "../../../redux/auth/operations";
 import { selectToken } from "../../../redux/auth/selectors";
+import { resetAuth } from "../../../redux/auth/slice";
 
 const LogoutBtn = ({ isModal }: { isModal?: boolean }) => {
   const dispatch = useAppDispatch();
@@ -10,17 +11,15 @@ const LogoutBtn = ({ isModal }: { isModal?: boolean }) => {
   const token = useAppSelector(selectToken);
 
   const handleLogout = () => {
-    console.log("logout");
-    console.log(
-      "Token before dispatch(signOut):",
-      localStorage.getItem("token")
-    );
-    dispatch(signOut());
+    console.log("Simulating logout (local очищення)");
+    localStorage.removeItem("token");
+    localStorage.removeItem("refresh_token");
+    dispatch(resetAuth());
     navigate("/");
   };
 
   return (
-    token && (
+    localStorage.getItem("token") && (
       <button
         onClick={handleLogout}
         className={`${css.logoutBtn} ${isModal ? css.modal : ""}`}

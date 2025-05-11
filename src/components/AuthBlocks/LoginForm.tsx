@@ -3,14 +3,15 @@ import css from "./LogRegForm.module.css";
 import logo from "../../assets/logo.svg";
 import Icon from "../common/Icon";
 
-import { useState } from "react";
-import { useAppDispatch } from "../../redux/reduxHook";
+import { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/reduxHook";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import { loginSchema } from "../../utils/validation";
-import { signIn } from "../../redux/auth/operations";
+import { signIn, fetchCurrentUser } from "../../redux/auth/operations";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 type LoginFormValues = {
   email: string;
@@ -21,6 +22,7 @@ const LoginForm = () => {
   const [isVisiblePwd, setIsVisiblePwd] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   const initialValues: LoginFormValues = {
     email: "",
@@ -33,15 +35,36 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<LoginFormValues>({ resolver: yupResolver(loginSchema) });
 
-  const onSubmit = (data: LoginFormValues) => {
+  // const onSubmit = (data: LoginFormValues) => {
+  //   console.log("form is valid:", data);
+  //   dispatch(signIn(data));
+  //   navigate("/recommended");
+  // };
+
+  const onSubmit = async (data: LoginFormValues) => {
     console.log("form is valid:", data);
-    dispatch(signIn(data));
-    navigate("/recommended");
+    try {
+      const resultAction = await dispatch(signIn(data));
+      if (signIn.fulfilled.match(resultAction)) {
+        await dispatch(fetchCurrentUser());
+        navigate("/recommended");
+      } else {
+        console.error("Login failed:", resultAction.payload);
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   };
 
   const togglePwd = () => {
     setIsVisiblePwd(!isVisiblePwd);
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/recommended");
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <section className={css.logRegContainer}>

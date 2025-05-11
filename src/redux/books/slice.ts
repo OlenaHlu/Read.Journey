@@ -74,20 +74,6 @@ const booksSlice = createSlice({
         author: "",
       };
     },
-    addToLibrary(state, action: PayloadAction<Book>) {
-      const bookToAdd = action.payload;
-      const isBookAlreadyInLibrary = state.favoriteBooks.some(
-        (book) => book._id === bookToAdd._id
-      );
-      if (!isBookAlreadyInLibrary) {
-        state.favoriteBooks.push(bookToAdd);
-      }
-    },
-    removeFromLibrary(state, action: PayloadAction<string>) {
-      state.favoriteBooks = state.favoriteBooks.filter(
-        (book) => book._id !== action.payload
-      );
-    },
     setReadingBook: (state, action: PayloadAction<Book>) => {
       state.readingBook = action.payload;
     },
@@ -127,8 +113,6 @@ export const {
   resetFiltersLib,
   setInputFilters,
   resetInputFilters,
-  addToLibrary,
-  removeFromLibrary,
   setReadingBook,
 } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;

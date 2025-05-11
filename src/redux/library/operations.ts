@@ -10,6 +10,8 @@ export type addBooksId = {
   status: string;
   owner: string;
   progress: [];
+  recommend?: boolean;
+  bookId?: string;
 };
 
 export const addBooks = createAsyncThunk<

@@ -30,17 +30,25 @@ const librarySlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addBooks.pending, handlePending)
-      .addCase(
-        addBooks.fulfilled,
-        (state, action: PayloadAction<addBooksId>) => {
-          state.isLoading = false;
-          const userId = action.payload.owner;
-          if (!state.usersBooks[userId]) {
-            state.usersBooks[userId] = [];
-          }
-          state.usersBooks[userId].push(action.payload);
+      .addCase(addBooks.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const userId = action.payload.owner;
+        if (!state.usersBooks[userId]) {
+          state.usersBooks[userId] = [];
         }
-      )
+        const bookIdToAdd = action.meta.arg.bookId;
+        const isBookAlreadyAdded = state.usersBooks[userId].some(
+          (bookInLibrary) => bookInLibrary._id === action.payload._id
+        );
+        if (!isBookAlreadyAdded) {
+          const newBookInLibrary = { ...action.payload, bookId: bookIdToAdd };
+          state.usersBooks[userId].push(newBookInLibrary);
+        } else {
+          console.log(
+            `Книга з bookId ${bookIdToAdd} вже є в бібліотеці користувача ${userId}`
+          );
+        }
+      })
       .addCase(addBooks.rejected, handleRejected)
 
       //delete book;
