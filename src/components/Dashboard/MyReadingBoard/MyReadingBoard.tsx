@@ -51,15 +51,15 @@ const MyReadingBoard = () => {
           </button>
         </form>
       </div> */}
-      {/* <div className={css.progressContainer}>
+      <div className={css.progressContainer}>
         <h3 className={css.progressTitle}>Progress</h3>
         <p className={css.progressText}>
           Here you will see when and how much you read. To record, click on the
           red button above.
         </p>
         <img src={starIcon} alt="star" className={css.progressImg} />
-      </div> */}
-      <div className={css.diaryAndStats}>
+      </div>
+      {/* <div className={css.diaryAndStats}>
         <div className={css.titleAndTabs}>
           <h3 className={css.differentTitle}>
             {activeTab === "diary" ? "Diary" : "Statistics"}
@@ -98,7 +98,7 @@ const MyReadingBoard = () => {
             <Statistics />
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

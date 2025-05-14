@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchBooks, fetchBookById } from "./operations";
-import { BooksState, BooksResponse, BookIdResponse, Book } from "./types";
+import { fetchBooks } from "./operations";
+import { BooksState, BooksResponse } from "../types";
+import { AddBooksId } from "../types";
 
 const initialState: BooksState = {
   books: [],
@@ -10,16 +11,8 @@ const initialState: BooksState = {
     author: "",
     imageUrl: "",
     totalPages: 0,
-    status: "",
-    owner: "",
-    progress: [],
-    timeLeftToRead: {
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-    },
+    recommend: false,
   },
-  favoriteBooks: [] as Book[],
   currentPage: 1,
   perPage: 10,
   totalPages: 0,
@@ -76,7 +69,7 @@ const booksSlice = createSlice({
         author: "",
       };
     },
-    setReadingBook: (state, action: PayloadAction<Book>) => {
+    setReadingBook: (state, action: PayloadAction<AddBooksId>) => {
       state.readingBook = action.payload;
     },
   },
@@ -91,18 +84,7 @@ const booksSlice = createSlice({
           state.totalPages = action.payload.totalPages;
           state.error = null;
         }
-      )
-      .addCase(fetchBooks.rejected, handleRejected)
-      .addCase(fetchBookById.pending, handlePending)
-      .addCase(
-        fetchBookById.fulfilled,
-        (state, action: PayloadAction<BookIdResponse>) => {
-          state.isLoading = false;
-          state.book = action.payload;
-          state.error = null;
-        }
-      )
-      .addCase(fetchBookById.rejected, handleRejected);
+      );
   },
 });
 

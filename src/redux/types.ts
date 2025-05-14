@@ -1,6 +1,6 @@
 export type BooksState = {
   books: Book[];
-  book: BookIdResponse;
+  book: Book;
   currentPage: number;
   perPage: number;
   totalPages: number;
@@ -8,13 +8,16 @@ export type BooksState = {
   inputFilters: InputFilters;
   isLoading: boolean;
   error: string | null;
-  favoriteBooks: Book[];
-  readingBook: Book | null;
+  readingBook: AddBooksId | null;
 };
 
-export type InputFilters = {
+export type Book = {
+  _id: string;
   title: string;
   author: string;
+  imageUrl: string;
+  totalPages: number;
+  recommend: boolean;
 };
 
 export type BooksResponse = {
@@ -24,7 +27,25 @@ export type BooksResponse = {
   perPage: number;
 };
 
-export type BookIdResponse = {
+export type InputFilters = {
+  title: string;
+  author: string;
+};
+
+export type AddBooksId = {
+  _id: string;
+  title: string;
+  author: string;
+  imageUrl: string;
+  totalPages: number;
+  status: string;
+  owner: string;
+  progress: [];
+  recommend?: boolean;
+  bookId?: string;
+};
+
+export type ReadBook = {
   _id: string;
   title: string;
   author: string;
@@ -33,7 +54,6 @@ export type BookIdResponse = {
   status: string;
   owner: string;
   progress: Progress[];
-  timeLeftToRead: TimeLeftToRead;
 };
 
 export type Progress = {
@@ -51,11 +71,14 @@ export type TimeLeftToRead = {
   seconds: number;
 };
 
-export type Book = {
-  _id: string;
-  title: string;
-  author: string;
-  imageUrl: string;
-  totalPages: number;
-  recommend: boolean;
-};
+// export type BookIdResponse = {
+//   _id: string;
+//   title: string;
+//   author: string;
+//   imageUrl: string;
+//   totalPages: number;
+//   status: string;
+//   owner: string;
+//   progress: Progress[];
+//   timeLeftToRead: TimeLeftToRead;
+// };

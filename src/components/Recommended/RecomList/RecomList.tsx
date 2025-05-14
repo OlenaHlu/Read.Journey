@@ -1,7 +1,7 @@
 import css from "./RecomList.module.css";
 
 import RecomCard from "../RecomCard/RecomCard";
-import { type Book } from "../../../redux/books/types";
+import { type Book } from "../../../redux/types";
 
 type BooksListProps = {
   books: Book[];

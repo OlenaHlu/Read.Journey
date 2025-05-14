@@ -14,8 +14,8 @@ import {
   resetPage,
 } from "../../redux/books/slice";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
-import { type Book } from "../../redux/books/types";
-import { type addBooksId, removeBook } from "../../redux/library/operations";
+import { type Book, type AddBooksId } from "../../redux/types";
+import { removeBook } from "../../redux/library/operations";
 import { selectUserBooks } from "../../redux/library/selectors";
 import Icon from "../common/Icon";
 import LibraryFilter from "./LibraryFilter/LibraryFilter";
@@ -35,7 +35,7 @@ const MyLibrary = () => {
   const totalPages = useAppSelector(selectTotalPages);
   const perPage = useAppSelector(selectPerPage);
   const [bookToOpen, setBookToOpen] = useState<
-    (addBooksId & Partial<Book>) | null
+    (AddBooksId & Partial<Book>) | null
   >(null);
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const MyLibrary = () => {
     dispatch(incrementPage(currentPage + 1));
   };
 
-  const modalOpen = (book: addBooksId) => {
+  const modalOpen = (book: AddBooksId) => {
     setBookToOpen({ ...book, recommend: undefined });
     setIsOpen(true);
   };
@@ -155,7 +155,7 @@ const MyLibrary = () => {
         </div>
       )}
       {isOpen && bookToOpen && (
-        <ReadingModal closeModal={modalClose} book={bookToOpen as Book} />
+        <ReadingModal closeModal={modalClose} book={bookToOpen as AddBooksId} />
       )}
     </div>
   );

@@ -1,5 +1,5 @@
 import { RootState } from "../store";
-import { Book } from "./types";
+import { Book } from "../types";
 
 export const selectBooks = (state: RootState): Book[] => state.books.books;
 
@@ -11,9 +11,6 @@ export const selectPerPage = (state: RootState) => state.books.perPage;
 
 export const selectInputFilters = (state: RootState) =>
   state.books.inputFilters;
-
-export const selectFavoritesBook = (state: RootState) =>
-  state.books.favoriteBooks;
 
 export const selectReadingBook = (state: RootState) => state.books.readingBook;
 

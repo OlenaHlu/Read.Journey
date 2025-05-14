@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { type addBooksId, addBooks, removeBook } from "./operations";
+import { addBooks, removeBook } from "./operations";
+import { AddBooksId } from "../types";
 
 type LibraryState = {
-  usersBooks: Record<string, addBooksId[]>;
+  usersBooks: Record<string, AddBooksId[]>;
   isLoading: boolean;
   error: string | null;
 };

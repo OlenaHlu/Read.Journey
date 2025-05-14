@@ -1,13 +1,14 @@
 import css from "../BookModal/BookModal.module.css";
 import ModalWrapper from "../ModalWrapper/ModalWrapper";
 import Icon from "../../../components/common/Icon";
-import { Book } from "../../../redux/books/types";
+
+import { type AddBooksId } from "../../../redux/types";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/reduxHook";
 import { setReadingBook } from "../../../redux/books/slice";
 
 type ReadingModalProps = {
-  book: Book;
+  book: AddBooksId;
   closeModal: () => void;
 };
 

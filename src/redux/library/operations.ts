@@ -1,21 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../api/axiosInstance";
-
-export type addBooksId = {
-  _id: string;
-  title: string;
-  author: string;
-  imageUrl: string;
-  totalPages: number;
-  status: string;
-  owner: string;
-  progress: [];
-  recommend?: boolean;
-  bookId?: string;
-};
+import { AddBooksId } from "../types";
 
 export const addBooks = createAsyncThunk<
-  addBooksId,
+  AddBooksId,
   { userId: string; bookId: string },
   { rejectValue: string }
 >("/library/addBook", async ({ userId, bookId }, thunkAPI) => {

@@ -1,6 +1,6 @@
 import css from "./RecomCard.module.css";
 
-import { type Book } from "../../../redux/books/types";
+import { type Book } from "../../../redux/types";
 import { useState } from "react";
 import BookModal from "../../../components/Modals/BookModal/BookModal";
 

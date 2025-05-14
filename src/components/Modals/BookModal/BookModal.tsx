@@ -1,8 +1,8 @@
 import css from "./BookModal.module.css";
 import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/reduxHook";
-import { type Book } from "../../../redux/books/types";
-import { type addBooksId } from "../../../redux/library/operations";
+import { type Book } from "../../../redux/types";
+import { type AddBooksId } from "../../../redux/types";
 import { selectUser } from "../../../redux/auth/selectors";
 import { addBooks } from "../../../redux/library/operations";
 import { selectUserBooks } from "../../../redux/library/selectors";
@@ -22,7 +22,7 @@ const BookModal = ({ book, closeModal }: bookModalProps) => {
   const userId = user?._id;
   const userBooks = useAppSelector((state) =>
     selectUserBooks(state, userId || "")
-  ) as addBooksId[];
+  ) as AddBooksId[];
   const [modalType, setModalType] = useState<"success" | "info" | null>(null);
   const [isAdding, setIsAdding] = useState(false);
   const [addError, setAddError] = useState<string | null>(null);
