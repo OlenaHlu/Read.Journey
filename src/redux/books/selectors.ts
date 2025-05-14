@@ -9,8 +9,6 @@ export const selectTotalPages = (state: RootState) => state.books.totalPages;
 
 export const selectPerPage = (state: RootState) => state.books.perPage;
 
-export const selectFiltersLib = (state: RootState) => state.books.filtersLib;
-
 export const selectInputFilters = (state: RootState) =>
   state.books.inputFilters;
 

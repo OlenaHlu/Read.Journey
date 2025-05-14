@@ -61,9 +61,11 @@ const booksSlice = createSlice({
     },
     setFiltersLib(state, action) {
       state.filtersLib = action.payload;
+      state.currentPage = 1;
     },
     resetFiltersLib(state) {
       state.filtersLib = "All books";
+      state.currentPage = 1;
     },
     setInputFilters(state, action) {
       state.inputFilters = action.payload;

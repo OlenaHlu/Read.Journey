@@ -2,14 +2,9 @@ import css from "./LibraryFilter.module.css";
 
 import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/reduxHook";
-import { selectFiltersLib } from "../../../redux/books/selectors";
+import { selectFiltersLib } from "../../../redux/library/selectors";
 import { setFiltersLib, resetFiltersLib } from "../../../redux/books/slice";
 import Icon from "../../common/Icon";
-
-// type LibraryFilterProps = {
-//   selectedFilters: string;
-//   onFilterChange: (filter: string) => void;
-// };
 
 const LibraryFilter = () => {
   const dispatch = useAppDispatch();
