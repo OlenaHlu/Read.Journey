@@ -70,15 +70,3 @@ export type TimeLeftToRead = {
   minutes: number;
   seconds: number;
 };
-
-// export type BookIdResponse = {
-//   _id: string;
-//   title: string;
-//   author: string;
-//   imageUrl: string;
-//   totalPages: number;
-//   status: string;
-//   owner: string;
-//   progress: Progress[];
-//   timeLeftToRead: TimeLeftToRead;
-// };

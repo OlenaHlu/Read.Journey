@@ -100,7 +100,8 @@ const RecommendedBoard = () => {
         </Link>
       </div>
       <div className={css.quote}>
-        <img src={booksIcon} alt="Books" className={css.booksImage} />
+        <span className={css.booksImage}>📚</span>
+        {/* <img src={booksIcon} alt="Books" className={css.booksImage} /> */}
         <p className={css.quoteText}>
           "Books are <span className={css.quoteSpan}> windows </span> to the
           world, and reading is a journey into the unknown."
