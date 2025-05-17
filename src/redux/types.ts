@@ -45,7 +45,7 @@ export type AddBooksId = {
   bookId?: string;
 };
 
-export type ReadBook = {
+export type StartReadBook = {
   _id: string;
   title: string;
   author: string;
@@ -54,6 +54,11 @@ export type ReadBook = {
   status: string;
   owner: string;
   progress: Progress[];
+};
+
+export type FinishReadBook = {
+  startReadBook: StartReadBook;
+  timeLeftToRead: TimeLeftToRead;
 };
 
 export type Progress = {

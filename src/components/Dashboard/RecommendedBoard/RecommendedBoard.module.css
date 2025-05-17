@@ -237,15 +237,18 @@
   }
 
   .booksImage {
-    width: 40px;
-    height: 40px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
   }
 
   .quoteText {
     font-weight: 400;
     font-size: 14px;
-    line-height: 129%;
-    letter-spacing: -0.02em;
+    line-height: 1.29;
+    letter-spacing: -0.0175rem;
     color: var(--light-gray);
   }
 

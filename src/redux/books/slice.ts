@@ -84,7 +84,8 @@ const booksSlice = createSlice({
           state.totalPages = action.payload.totalPages;
           state.error = null;
         }
-      );
+      )
+      .addCase(fetchBooks.rejected, handleRejected);
   },
 });
 
