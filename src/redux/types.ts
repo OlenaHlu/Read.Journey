@@ -57,16 +57,23 @@ export type StartReadBook = {
 };
 
 export type FinishReadBook = {
-  startReadBook: StartReadBook;
+  _id: string;
+  title: string;
+  author: string;
+  imageUrl: string;
+  totalPages: number;
+  status: string;
+  owner: string;
+  progress: Progress[];
   timeLeftToRead: TimeLeftToRead;
 };
 
 export type Progress = {
   startPage: number;
   startReading: string;
-  finishPage: number;
-  finishReading: string;
-  speed: number;
+  finishPage?: number;
+  finishReading?: string;
+  speed?: number;
   status: string;
 };
 

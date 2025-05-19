@@ -3,37 +3,36 @@ import { startReadingBook, finishReadingBook } from "./operations";
 import {
   StartReadBook,
   FinishReadBook,
+  AddBooksId,
+  Book,
   Progress,
-  TimeLeftToRead,
 } from "../types";
 
 type ReadingState = {
-  _id: string;
-  title: string;
-  author: string;
-  imageUrl: string;
-  totalPages: number;
-  status: string;
-  owner: string;
+  startReadingPage: number | null;
+  currentPage: number | null;
+  currentReadingBook: (AddBooksId & Partial<Book>) | null;
+  isReadingStarted: boolean;
   progress: Progress[];
-  timeLeftToRead: TimeLeftToRead;
+  timeLeftToRead: {
+    hours: number | null;
+    minutes: number | null;
+    seconds: number | null;
+  };
   isLoading: boolean;
   error: string | null;
 };
 
 const initialState: ReadingState = {
-  _id: "",
-  title: "",
-  author: "",
-  imageUrl: "",
-  totalPages: 0,
-  status: "",
-  owner: "",
-  progress: [],
+  startReadingPage: null,
+  currentPage: null,
+  currentReadingBook: null,
+  isReadingStarted: false,
+  progress: [] as Progress[],
   timeLeftToRead: {
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
+    hours: null,
+    minutes: null,
+    seconds: null,
   },
   isLoading: false,
   error: null,
@@ -48,3 +47,60 @@ const handleRejected = (state: ReadingState, action: PayloadAction<any>) => {
   state.isLoading = false;
   state.error = action.payload ?? "Something went wrong";
 };
+const readingSlice = createSlice({
+  name: "reading",
+  initialState: initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(startReadingBook.pending, handlePending)
+      .addCase(
+        startReadingBook.fulfilled,
+        (state, action: PayloadAction<StartReadBook>) => {
+          state.isLoading = false;
+          state.isReadingStarted = true;
+
+          const startPage = action.payload.progress[0]?.startPage || null;
+
+          state.startReadingPage = startPage;
+          state.currentPage = startPage;
+
+          state.progress = action.payload.progress;
+
+          const lastProgress = state.progress[state.progress.length - 1];
+          if (!lastProgress || lastProgress.status !== "active") {
+            state.progress.push({
+              startPage: startPage || 0,
+              startReading:
+                action.payload.progress[0]?.startReading ||
+                new Date().toISOString(),
+              status: "active",
+            });
+          }
+        }
+      )
+      .addCase(startReadingBook.rejected, handleRejected)
+      .addCase(finishReadingBook.pending, handlePending)
+      .addCase(
+        finishReadingBook.fulfilled,
+        (state, action: PayloadAction<FinishReadBook>) => {
+          state.isLoading = false;
+          state.isReadingStarted = false;
+          state.currentReadingBook = null;
+
+          state.progress = action.payload.progress;
+
+          state.timeLeftToRead = {
+            hours: action.payload.timeLeftToRead?.hours || null,
+            minutes: action.payload.timeLeftToRead?.minutes || null,
+            seconds: action.payload.timeLeftToRead?.seconds || null,
+          };
+
+          const lastReadSession =
+            action.payload.progress[action.payload.progress.length - 1];
+          state.currentPage = lastReadSession?.finishPage || null;
+          state.startReadingPage = null;
+        }
+      );
+  },
+});
