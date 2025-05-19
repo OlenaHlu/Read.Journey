@@ -42,7 +42,7 @@ export type AddBooksId = {
   owner: string;
   progress: [];
   recommend?: boolean;
-  bookId?: string;
+  bookId: string;
 };
 
 export type StartReadBook = {

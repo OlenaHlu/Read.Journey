@@ -13,17 +13,19 @@ import storage from "redux-persist/lib/storage";
 import { authReducer } from "./auth/slice";
 import { booksReducer } from "./books/slice";
 import { libraryReducer } from "./library/slice";
+import { readingReducer } from "./reading/slice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   books: booksReducer,
   library: libraryReducer,
+  reading: readingReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage: storage,
-  whitelist: ["auth", "books", "library"],
+  whitelist: ["auth", "books", "library", "reading"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

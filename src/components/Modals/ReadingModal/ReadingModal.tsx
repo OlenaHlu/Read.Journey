@@ -5,7 +5,7 @@ import Icon from "../../../components/common/Icon";
 import { type AddBooksId } from "../../../redux/types";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/reduxHook";
-import { setReadingBook } from "../../../redux/books/slice";
+import { setReadingBook } from "../../../redux/reading/slice";
 
 type ReadingModalProps = {
   book: AddBooksId;
@@ -17,8 +17,12 @@ const ReadingModal = ({ book, closeModal }: ReadingModalProps) => {
   const navigate = useNavigate();
 
   const handleStartReading = () => {
-    dispatch(setReadingBook(book));
-    navigate("/reading");
+    if (book.bookId) {
+      dispatch(setReadingBook(book));
+      navigate("/reading");
+    } else {
+      console.warn("bookId is undefined, cannot start reading.");
+    }
   };
   return (
     <ModalWrapper closeModal={closeModal}>

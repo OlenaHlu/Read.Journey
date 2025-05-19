@@ -13,6 +13,8 @@ type ReadingState = {
   currentPage: number | null;
   currentReadingBook: (AddBooksId & Partial<Book>) | null;
   isReadingStarted: boolean;
+  isReadingActive: boolean;
+  stopReadingPage: number | null;
   progress: Progress[];
   timeLeftToRead: {
     hours: number | null;
@@ -28,6 +30,8 @@ const initialState: ReadingState = {
   currentPage: null,
   currentReadingBook: null,
   isReadingStarted: false,
+  isReadingActive: false,
+  stopReadingPage: null,
   progress: [] as Progress[],
   timeLeftToRead: {
     hours: null,
@@ -47,10 +51,43 @@ const handleRejected = (state: ReadingState, action: PayloadAction<any>) => {
   state.isLoading = false;
   state.error = action.payload ?? "Something went wrong";
 };
+
+const resetReadingState = {
+  startReadingPage: null,
+  currentPage: null,
+  isReadingStarted: false,
+  isReadingActive: false,
+  stopReadingPage: null,
+  progress: [] as Progress[],
+  timeLeftToRead: initialState.timeLeftToRead,
+};
+
 const readingSlice = createSlice({
   name: "reading",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setReadingBook: (state, action: PayloadAction<AddBooksId | null>) => {
+      state.currentReadingBook = action.payload ? action.payload : null;
+      Object.assign(state, resetReadingState);
+    },
+
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
+    },
+
+    clearReadingBook: (state) => {
+      state.currentReadingBook = null;
+      Object.assign(state, resetReadingState);
+    },
+
+    setIsReadingActive: (state, action: PayloadAction<boolean>) => {
+      state.isReadingActive = action.payload;
+    },
+
+    setStopReadingPage: (state, action: PayloadAction<number | null>) => {
+      state.stopReadingPage = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(startReadingBook.pending, handlePending)
@@ -59,6 +96,7 @@ const readingSlice = createSlice({
         (state, action: PayloadAction<StartReadBook>) => {
           state.isLoading = false;
           state.isReadingStarted = true;
+          state.isReadingActive = true;
 
           const startPage = action.payload.progress[0]?.startPage || null;
 
@@ -86,6 +124,7 @@ const readingSlice = createSlice({
         (state, action: PayloadAction<FinishReadBook>) => {
           state.isLoading = false;
           state.isReadingStarted = false;
+          state.isReadingActive = false;
           state.currentReadingBook = null;
 
           state.progress = action.payload.progress;
@@ -100,7 +139,18 @@ const readingSlice = createSlice({
             action.payload.progress[action.payload.progress.length - 1];
           state.currentPage = lastReadSession?.finishPage || null;
           state.startReadingPage = null;
+          state.stopReadingPage = null;
         }
       );
   },
 });
+
+export const {
+  setReadingBook,
+  setCurrentPage,
+  clearReadingBook,
+  setIsReadingActive,
+  setStopReadingPage,
+} = readingSlice.actions;
+
+export const readingReducer = readingSlice.reducer;

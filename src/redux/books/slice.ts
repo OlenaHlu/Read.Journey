@@ -69,9 +69,9 @@ const booksSlice = createSlice({
         author: "",
       };
     },
-    setReadingBook: (state, action: PayloadAction<AddBooksId>) => {
-      state.readingBook = action.payload;
-    },
+    // setReadingBook: (state, action: PayloadAction<AddBooksId>) => {
+    //   state.readingBook = action.payload;
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -98,6 +98,5 @@ export const {
   resetFiltersLib,
   setInputFilters,
   resetInputFilters,
-  setReadingBook,
 } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;
