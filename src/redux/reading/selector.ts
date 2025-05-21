@@ -7,8 +7,6 @@ export const selectStartReadingPage = (state: RootState) =>
   state.reading.startReadingPage;
 export const selectCurrentPage = (state: RootState) =>
   state.reading.currentPage;
-export const selectIsReadingStarted = (state: RootState) =>
-  state.reading.isReadingStarted;
 export const selectProgress = (state: RootState) => state.reading.progress;
 export const selectTimeLeftToRead = (state: RootState) =>
   state.reading.timeLeftToRead;

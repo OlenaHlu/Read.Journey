@@ -12,7 +12,6 @@ type ReadingState = {
   startReadingPage: number | null;
   currentPage: number | null;
   currentReadingBook: (AddBooksId & Partial<Book>) | null;
-  isReadingStarted: boolean;
   isReadingActive: boolean;
   stopReadingPage: number | null;
   progress: Progress[];
@@ -29,7 +28,6 @@ const initialState: ReadingState = {
   startReadingPage: null,
   currentPage: null,
   currentReadingBook: null,
-  isReadingStarted: false,
   isReadingActive: false,
   stopReadingPage: null,
   progress: [] as Progress[],
@@ -55,7 +53,6 @@ const handleRejected = (state: ReadingState, action: PayloadAction<any>) => {
 const resetReadingState = {
   startReadingPage: null,
   currentPage: null,
-  isReadingStarted: false,
   isReadingActive: false,
   stopReadingPage: null,
   progress: [] as Progress[],
@@ -95,7 +92,6 @@ const readingSlice = createSlice({
         startReadingBook.fulfilled,
         (state, action: PayloadAction<StartReadBook>) => {
           state.isLoading = false;
-          state.isReadingStarted = true;
           state.isReadingActive = true;
 
           const startPage = action.payload.progress[0]?.startPage || null;
@@ -123,7 +119,6 @@ const readingSlice = createSlice({
         finishReadingBook.fulfilled,
         (state, action: PayloadAction<FinishReadBook>) => {
           state.isLoading = false;
-          state.isReadingStarted = false;
           state.isReadingActive = false;
           state.currentReadingBook = null;
 

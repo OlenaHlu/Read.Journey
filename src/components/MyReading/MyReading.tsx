@@ -1,32 +1,26 @@
 import css from "./MyReading.module.css";
-import { useState } from "react";
-import { useAppSelector, useAppDispatch } from "../../redux/reduxHook";
-import { setIsReadingActive, setReadingBook } from "../../redux/reading/slice";
+import { useAppSelector } from "../../redux/reduxHook";
 import {
   selectCurrentReadingBook,
   selectIsReadingActive,
 } from "../../redux/reading/selector";
 import Icon from "../common/Icon";
 import ReadingTimer from "../common/ReadingTimer";
-import { startReadingBook } from "../../redux/reading/operations";
 
-const MyReading = () => {
-  const dispatch = useAppDispatch();
+type MyReadingProps = {
+  onSetMyReadingBoardMode: (mode: "start" | "stop") => void;
+};
+
+const MyReading = ({ onSetMyReadingBoardMode }: MyReadingProps) => {
   const readingBook = useAppSelector(selectCurrentReadingBook);
   const isReadingActive = useAppSelector(selectIsReadingActive);
-  const [startReadingFromBeginning, setStartReadingFromBeginning] =
-    useState(false);
 
-  const handleStartReading = () => {
-    if (readingBook) {
-      dispatch(startReadingBook({ id: readingBook.bookId, page: 1 }));
-    } else {
-      console.warn("readingBook is null, cannot start reading.");
-    }
+  const handlePlayButtonClick = () => {
+    onSetMyReadingBoardMode("start");
   };
 
-  const handleStopReading = () => {
-    dispatch(setIsReadingActive(false));
+  const handleStopButtonClick = () => {
+    onSetMyReadingBoardMode("stop");
   };
 
   return (
@@ -56,7 +50,7 @@ const MyReading = () => {
         <button
           type="button"
           className={css.stopBtn}
-          onClick={handleStopReading}
+          onClick={handleStopButtonClick}
         >
           <Icon iconName="stop" className={css.iconPlay} />
         </button>
@@ -64,7 +58,7 @@ const MyReading = () => {
         <button
           type="button"
           className={css.readBtn}
-          onClick={handleStartReading}
+          onClick={handlePlayButtonClick}
         >
           <Icon iconName="play" className={css.iconPlay} />
         </button>

@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchBooks } from "./operations";
 import { BooksState, BooksResponse } from "../types";
-import { AddBooksId } from "../types";
 
 const initialState: BooksState = {
   books: [],
@@ -69,9 +68,6 @@ const booksSlice = createSlice({
         author: "",
       };
     },
-    // setReadingBook: (state, action: PayloadAction<AddBooksId>) => {
-    //   state.readingBook = action.payload;
-    // },
   },
   extraReducers: (builder) => {
     builder
